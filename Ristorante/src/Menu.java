@@ -1,7 +1,7 @@
-import java.util.ArrayList;
+import java.util.Set;
 
 public class Menu {
 	
-	private ArrayList<Piatto> elenco;
+	private Set<Piatto> elenco;
 
 }

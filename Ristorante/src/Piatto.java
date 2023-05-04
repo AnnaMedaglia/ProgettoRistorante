@@ -1,8 +1,8 @@
-import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class Piatto {
 	
 	private String denominazione;
-	private ArrayList<Periodo> durata;
+	private TreeSet<Periodo> durata;
 	private double caricoLavoro;
 }
