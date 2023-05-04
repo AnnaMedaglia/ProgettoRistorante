@@ -1,10 +1,10 @@
 
 public class Ristorante {
 	
-	String nome;
-	int caricoLavoroPersona;
-	int numPosti;
-	double caricoLavoroRistorante;
+	private String nome;
+	private int caricoLavoroPersona;
+	private int numPosti;
+	private double caricoLavoroRistorante;
 	
 	public Ristorante(String nome, int caricoLavoroPersona, int numPosti, double caricoLavoroRistorante) {
 		this.nome = nome;

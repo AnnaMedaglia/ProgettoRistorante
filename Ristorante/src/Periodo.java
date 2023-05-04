@@ -2,8 +2,8 @@ import java.time.LocalDate;
 
 public class Periodo {
 	
-	LocalDate inizio;
-	LocalDate fine;
+	private LocalDate inizio;
+	private LocalDate fine;
 	
 	public Periodo(LocalDate inizio, LocalDate fine) {
 		this.inizio = inizio;
