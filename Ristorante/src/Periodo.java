@@ -23,6 +23,5 @@ public class Periodo {
 		this.fine = fine;
 	}
 	
-	
 
 }
