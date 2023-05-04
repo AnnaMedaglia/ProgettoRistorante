@@ -23,5 +23,13 @@ public class Periodo {
 		this.fine = fine;
 	}
 	
+<<<<<<< HEAD
 
+=======
+	public boolean contiene(LocalDate data) {
+        return (data.isEqual(inizio) || data.isAfter(inizio)) &&
+               (data.isEqual(fine) || data.isBefore(fine));
+    }
+	
+>>>>>>> branch 'master' of https://github.com/AnnaMedaglia/ProgettoRistorante.git
 }
