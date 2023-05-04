@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 
 public class Piatto {
 	
 	private String denominazione;
-	private <Periodo> durata;
+	private ArrayList<Periodo> durata;
 	private double caricoLavoro;
 }
