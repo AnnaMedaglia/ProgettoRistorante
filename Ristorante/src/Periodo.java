@@ -1,11 +1,11 @@
 import java.time.LocalDate;
 
-public class Progetto {
+public class Periodo {
 	
 	LocalDate inizio;
 	LocalDate fine;
 	
-	public Progetto(LocalDate inizio, LocalDate fine) {
+	public Periodo(LocalDate inizio, LocalDate fine) {
 		this.inizio = inizio;
 		this.fine = fine;
 	}
