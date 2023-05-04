@@ -23,6 +23,9 @@ public class Periodo {
 		this.fine = fine;
 	}
 	
+	public boolean contiene(LocalDate data) {
+        return (data.isEqual(inizio) || data.isAfter(inizio)) &&
+               (data.isEqual(fine) || data.isBefore(fine));
+    }
 	
-
 }
