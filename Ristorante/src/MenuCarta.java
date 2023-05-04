@@ -1,6 +1,6 @@
 
 public class MenuCarta extends Menu {
 	
-	private 
+	private ArrayList<Giorno> data;
 
 }
