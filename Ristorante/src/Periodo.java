@@ -27,4 +27,5 @@ public class Periodo {
                (data.isEqual(fine) || data.isBefore(fine));
     }
 
+
 }
