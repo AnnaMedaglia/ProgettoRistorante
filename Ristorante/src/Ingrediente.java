@@ -7,5 +7,5 @@ public class Ingrediente extends Prodotto {
 		super();
 		this.tipo = tipoI;
 	}
-	
+ 
 }

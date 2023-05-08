@@ -22,7 +22,7 @@ public class Periodo {
 	public void setFine(LocalDate fine) {
 		this.fine = fine;
 	}
-	public boolean contiene(LocalDate data) {
+	public boolean contains (LocalDate data) {
         return (data.isEqual(inizio) || data.isAfter(inizio)) &&
                (data.isEqual(fine) || data.isBefore(fine));
     }

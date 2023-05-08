@@ -47,4 +47,9 @@ public abstract class Merce {
 		insieme.remove(merce);
 	}
 
+	public boolean contains (HashSet<Merce> insieme, Merce merce) {
+		return insieme.contains(merce);
+	}
+	
+	
 	}
