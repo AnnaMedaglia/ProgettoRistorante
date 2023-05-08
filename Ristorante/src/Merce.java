@@ -3,9 +3,9 @@ import java.util.HashSet;
 public abstract class Merce {
 	
 	private String nome;
-	private String tipo;
+	protected String tipo;
 	protected String unitàMisura;
-	private double consumoProCapite;
+	private double dose; //dose per ingrediente, consumoProCapite per Bevanda e Genere Extra
 	
 	public String getNome() {
 		return nome;
@@ -31,12 +31,12 @@ public abstract class Merce {
 		this.unitàMisura = unitàMisura;
 	}
 	
-	public double getConsumoProCapite() {
-		return consumoProCapite;
+	public double getDose() {
+		return dose;
 	}
 
-	public void setConsumoProCapite(double consumoProCapite) {
-		this.consumoProCapite = consumoProCapite;
+	public void setDose(double dose) {
+		this.dose = dose;
 	}
 
 	public void addMerce(HashSet<Merce> insieme, Merce merce) {

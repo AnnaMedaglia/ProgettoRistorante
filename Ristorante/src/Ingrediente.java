@@ -1,5 +1,11 @@
 
 public class Ingrediente extends Prodotto {
 
-	private int quantità;
+	private String tipoI = "ingrediente";
+	
+	public Ingrediente(){
+		super();
+		this.tipo = tipoI;
+	}
+	
 }
