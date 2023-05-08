@@ -1,5 +1,11 @@
 public class Bevanda extends Prodotto {
 
-	private int consumoProCapite;
+		private String unitàMisuraB = "l";
+	
+	public Bevanda() {
+		super();
+		this.unitàMisura = unitàMisuraB;
+	}
+	
 	
 }
