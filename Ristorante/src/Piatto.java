@@ -7,7 +7,6 @@ public class Piatto {
 	private double caricoLavoro;
 	
 	public Piatto(String denominazione, double caricoLavoro, Ricetta ricetta) {
-		super();
 		this.denominazione = denominazione;
 		this.durata = new TreeSet<>();
 		this.caricoLavoro = ricetta.getCaricoLavoroPorzione();

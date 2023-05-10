@@ -8,7 +8,6 @@ public class Ricetta {
 	private double caricoLavoroPorzione;
 	
 	public Ricetta(String nome, int numPorzioni, double caricoLavoroPorzione) {
-		super();
 		this.nome = nome;
 		this.ingredienti = new HashSet<>();
 		this.numPorzioni = numPorzioni;

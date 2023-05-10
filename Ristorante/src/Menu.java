@@ -5,7 +5,8 @@ public abstract class Menu {
 	protected String tipo;
 	private HashSet<Piatto> elenco;
 	
-	public HashSet<Piatto> getElenco() {
+	//getPiatto e non getElenco per poter sfruttare l'override 
+	public HashSet<Piatto> getPiatto() { 
 		return elenco;
 	}
 
@@ -28,4 +29,5 @@ public abstract class Menu {
 	public boolean contains(HashSet<Piatto> insieme, Piatto piatto) {
 		return insieme.contains(piatto);
 	}
+
 }

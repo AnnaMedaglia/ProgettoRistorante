@@ -10,7 +10,7 @@ public class MenuTematico extends Menu {
 	public MenuTematico(String nome, TreeSet<Periodo> durata) {
 		super();
 		this.nome = nome;
-		this.creaElenco();
+		this.creaElenco(); //creazione elenco vuoto per i piatti del menu tematico
 		this.durata = durata;
 	}
 
