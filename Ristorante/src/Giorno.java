@@ -7,6 +7,13 @@ public class Giorno extends Periodo {
 	public Giorno(LocalDate giorno) {
 		super (giorno, giorno);
 	}
+
+	public LocalDate getGiorno() {
+		return giorno;
+	}
+
+	public void setGiorno(LocalDate giorno) {
+		this.giorno = giorno;
+	}
 	
-	//get e setter
 }
