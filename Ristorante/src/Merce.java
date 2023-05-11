@@ -51,5 +51,4 @@ public abstract class Merce {
 		return insieme.contains(merce);
 	}
 	
-	
-	}
+}
