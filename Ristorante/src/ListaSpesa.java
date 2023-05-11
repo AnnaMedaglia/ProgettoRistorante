@@ -5,7 +5,6 @@ public class ListaSpesa {
 	private HashSet<Merce> lista;
 	
 	public ListaSpesa(Giorno data) {
-		super();
 		this.data = data;
 		this.lista = new HashSet<>();
 	}

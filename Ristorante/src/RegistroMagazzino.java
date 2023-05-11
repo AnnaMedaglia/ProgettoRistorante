@@ -2,24 +2,19 @@ import java.util.HashMap;
 
 public class RegistroMagazzino {
 	
-	private HashMap<Merce, Integer> registro;
+	private HashMap<Merce, Double> registro;
 	private Giorno data;
 	
-	public RegistroMagazzino(HashMap<Merce, Integer> registro, Giorno data) {
-		this.registro = registro;
-		this.data = data;
-	}
-
 	public RegistroMagazzino(Giorno data) {
 		this.registro = new HashMap<>();
 		this.data = data;
 	}
 
-	public HashMap<Merce, Integer> getRegistro() {
+	public HashMap<Merce, Double> getRegistro() {
 		return registro;
 	}
 
-	public void setRegistro(HashMap<Merce, Integer> registro) {
+	public void setRegistro(HashMap<Merce, Double> registro) {
 		this.registro = registro;
 	}
 
@@ -32,7 +27,10 @@ public class RegistroMagazzino {
 	}
 	
 	public void acquistatiI (ListaSpesa lista) {
-	//	registro.putAll(lista.getLista());
+		for (Merce merce : lista.getLista()) {
+			registro.put(merce, registro.getOrDefault(merce, (double) 0) + merce.getDose());
+		}
 	}
 	
+
 }
