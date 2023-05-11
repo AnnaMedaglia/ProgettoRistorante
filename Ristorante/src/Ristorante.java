@@ -8,6 +8,7 @@ public class Ristorante {
 	private double caricoLavoroRistorante; 
 	private HashSet<GenereExtra> insiemeGE;
 	private HashSet<Bevanda> insiemeB;
+	private HashSet<Ricetta> ricettario;
 
 	//costruttore
 	public Ristorante(String nome, int caricoLavoroPersona, int numPosti) {
@@ -17,6 +18,7 @@ public class Ristorante {
 		this.caricoLavoroRistorante = 0;
 		this.insiemeGE = new HashSet<>();
 		this.insiemeB = new HashSet<>();
+		this.ricettario = new HashSet<>();
 	}
 
 	public String getNome() {
@@ -60,6 +62,13 @@ public class Ristorante {
 		return insiemeB;
 	}
 
+	public HashSet<Ricetta> getRicettario() {
+		return ricettario;
+	}
+
+	public void setRicettario(HashSet<Ricetta> ricettario) {
+		this.ricettario = ricettario;
+	}
 	
 
 }

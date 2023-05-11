@@ -2,9 +2,9 @@ import java.util.HashSet;
 
 public class SceltaMenu extends Scelta {
 	
-	private Menu menu;
+	private MenuTematico menu;
 
-    public SceltaMenu(Menu menu) {
+    public SceltaMenu(MenuTematico menu) {
         this.menu = menu;
     }
     

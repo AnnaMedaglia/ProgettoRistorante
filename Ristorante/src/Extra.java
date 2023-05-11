@@ -1,9 +1,9 @@
 import java.util.HashSet;
 
-public abstract class Extra extends Prodotto {
+public abstract class Extra extends Merce {
 	
 	//questo metodo vale sia per l'insieme delle Bevande, sia per quello dei generi Extra
-		public HashSet<Merce> creaListaExtra (Prenotazione prenotazione, HashSet<Merce> insieme){
+		public HashSet<Merce> creaListaExtraDaPrenotazione (Prenotazione prenotazione, HashSet<Merce> insieme){
 			HashSet<Merce> listaE = new HashSet<>();
 			int num = prenotazione.getNumCoperti();
 			for (Merce merce : insieme) {

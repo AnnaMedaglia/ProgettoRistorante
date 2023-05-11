@@ -6,6 +6,8 @@ public abstract class Merce {
 	protected String tipo;
 	protected String unitàMisura;
 	private double dose; //dose per ingrediente, consumoProCapite per Bevanda e Genere Extra
+	private Giorno scadenza;
+	private boolean qualità;
 	
 	public String getNome() {
 		return nome;
@@ -37,6 +39,23 @@ public abstract class Merce {
 
 	public void setDose(double dose) {
 		this.dose = dose;
+	}
+
+	
+	public Giorno getScadenza() {
+		return scadenza;
+	}
+
+	public void setScadenza(Giorno scadenza) {
+		this.scadenza = scadenza;
+	}
+
+	public boolean isQualità() {
+		return qualità;
+	}
+
+	public void setQualità(boolean qualità) {
+		this.qualità = qualità;
 	}
 
 	public void addMerce(HashSet<Merce> insieme, Merce merce) {
