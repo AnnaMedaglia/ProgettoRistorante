@@ -1,4 +1,4 @@
-public class Bevanda extends Prodotto {
+public class Bevanda extends Extra {
 
 	private String tipoB = "bevanda";
 	private String unitàMisuraB = "l";

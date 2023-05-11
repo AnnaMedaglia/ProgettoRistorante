@@ -1,4 +1,4 @@
-public class GenereExtra extends Prodotto {
+public class GenereExtra extends Extra {
 
 	private String tipoGE = "genere extra";
 	private String unitàMisuraGE = "hg";
