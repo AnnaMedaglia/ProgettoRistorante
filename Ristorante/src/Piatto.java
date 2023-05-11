@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.TreeSet;
 
 public class Piatto {
@@ -32,5 +33,17 @@ public class Piatto {
 		return caricoLavoro;
 	}
 	
-	
+	//metodo che associa un piatto a una ricetta
+	public Ricetta trovaRicetta(Piatto piatto, HashSet<Ricetta> ricettario) {
+		Ricetta trovata;
+		String nome = piatto.getDenominazione();
+		for (Ricetta ric : ricettario) {
+			if (ric.getNome()==nome) {
+				trovata = ric;
+				return trovata;
+			}
+		}
+		System.out.println("Non esiste una ricetta con questo nome");
+		return null;
+	}
 }
