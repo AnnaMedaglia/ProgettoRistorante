@@ -1,11 +1,11 @@
 import java.time.LocalDate;
 
-public class Giorno extends Periodo {
+public class Giorno {
 		
 	private LocalDate giorno;
-	
+		
 	public Giorno(LocalDate giorno) {
-		super (giorno, giorno);
+		this.giorno = giorno;
 	}
 
 	public LocalDate getGiorno() {

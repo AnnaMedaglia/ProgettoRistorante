@@ -8,7 +8,7 @@ public class MenuTematico extends Menu {
 	private String nome;
 	private double caricoLavoroMenuT;
 	
-	public MenuTematico(String nome, TreeSet<Periodo> durata) {
+	public MenuTematico(String nome) {
 		super();
 		this.tipo = tipoMT;
 		this.nome = nome;
