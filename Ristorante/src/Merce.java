@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public abstract class Merce {
 	
 	private String nome;
@@ -55,5 +57,30 @@ public abstract class Merce {
 	public void setQualità(boolean qualità) {
 		this.qualità = qualità;
 	}
-
+	
+	public static Merce trovaMerceDaNome(HashSet<? extends Merce> insieme, String nome){
+		Merce trovata;
+		for(Merce merce : insieme) {
+			if (merce.getNome()==nome) {
+				trovata = merce;
+				return trovata;
+			}
+		}
+	return null;
+	}
+	
+	
+	public static HashSet<Merce> gestioneDuplicati(HashSet<? extends Merce> conDuplicati){
+		HashSet<Merce> noDuplicati = new HashSet<>();
+		for (Merce merce : conDuplicati) {
+			Merce merceTrovata = trovaMerceDaNome(conDuplicati, merce.getNome());
+			if (conDuplicati.contains(merceTrovata)) { // se lista contiene il nome della merce va aggiornato il numero della quantità
+				double doseIniziale = merceTrovata.getDose();
+				merce.setDose(doseIniziale+merce.getDose());
+				noDuplicati.add(merce);
+				} // se lista non contiene l'elemento merce si aggiunge così com'è 
+			else noDuplicati.add(merce);
+		}
+		return noDuplicati;
+	}
 }

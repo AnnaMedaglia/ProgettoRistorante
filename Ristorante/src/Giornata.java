@@ -56,10 +56,15 @@ public class Giornata {
 		this.menuTematici = menuTematici;
 	}
 	
-	public void ritornaListaSpesa() {
+	public void ritornaListaSpesa(Ristorante ristorante) {
+		HashSet<Merce> temp = new HashSet<>();
+		
 		for (Prenotazione pren : prenotazioni) {
-			
+			temp.addAll(Ingrediente.creaListaIngredientiDaPrenotazione(pren, ristorante.getRicettario()));
+			temp.addAll(Bevanda.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeB()));
+			temp.addAll(GenereExtra.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeGE()));
 		}
+		daComprare.setLista(temp);
 	}
 	
 }
