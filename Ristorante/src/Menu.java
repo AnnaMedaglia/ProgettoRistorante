@@ -18,16 +18,4 @@ public abstract class Menu {
 		this.elenco = new HashSet<>();
 	}
 
-	public void addPiatto(HashSet<Piatto> insieme, Piatto piatto) {
-		insieme.add(piatto);
-	}
-
-	public void removePiatto(HashSet<Piatto> insieme, Piatto piatto) {
-		insieme.remove(piatto);
-	}
-
-	public boolean contains(HashSet<Piatto> insieme, Piatto piatto) {
-		return insieme.contains(piatto);
-	}
-
 }

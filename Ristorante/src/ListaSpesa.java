@@ -25,7 +25,14 @@ public class ListaSpesa {
 		this.lista = lista;
 	}
 	
-	
-	
+	public HashSet<Ingrediente> getIngredienti () {
+		HashSet<Ingrediente> ingredienti = new HashSet<>();
+		for (Merce merce : lista) {
+			if (merce instanceof Ingrediente) {
+				ingredienti.add((Ingrediente) merce);
+			}
+		}
+		return ingredienti;
+	}
 	
 }

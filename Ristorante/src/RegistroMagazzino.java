@@ -26,11 +26,23 @@ public class RegistroMagazzino {
 		this.data = data;
 	}
 	
+	//per ogni merce della lista dei prodotti acquistati inseriamo nel registro la merce con la dose aggiornata
 	public void acquistatiI (ListaSpesa lista) {
 		for (Merce merce : lista.getLista()) {
-			registro.put(merce, registro.getOrDefault(merce, (double) 0) + merce.getDose());
+			double daAggiungere = merce.getDose() + (0.1 * merce.getDose()); //consideriamo l'incremento 
+			registro.put(merce, registro.getOrDefault(merce, 0.0) + daAggiungere);
 		}
 	}
 	
+	public void inCucinaO (ListaSpesa lista) {
+		for (Merce ingrediente : lista.getIngredienti()) {
+			double daTogliere = ingrediente.getDose() + (0.1 * ingrediente.getDose()); //consideriamo l'incremento
+			registro.put(ingrediente, registro.getOrDefault(ingrediente, 0.0) - daTogliere);
+		}
+	}
+
+	public void extraO () {
+		
+	}
 
 }
