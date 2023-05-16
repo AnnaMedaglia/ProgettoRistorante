@@ -66,7 +66,7 @@ public class Prenotazione {
 	}
 	
 	
-	//metodo che servirà per la lista della spesa
+	//metodo che servirà per la lista della spesa relativa alla singola prenotazione
 	public HashMap <Piatto, Integer> elencoPiatti () {
 		HashMap<Piatto, Integer> conteggio = new HashMap<>();
         for (Scelta scelta : elenco.keySet()) {

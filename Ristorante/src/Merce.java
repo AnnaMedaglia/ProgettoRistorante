@@ -1,5 +1,3 @@
-import java.util.HashSet;
-
 public abstract class Merce {
 	
 	private String nome;
@@ -58,16 +56,4 @@ public abstract class Merce {
 		this.qualità = qualità;
 	}
 
-	public void addMerce(HashSet<Merce> insieme, Merce merce) {
-		insieme.add(merce);
-	}
-
-	public void removeMerce(HashSet<Merce> insieme, Merce merce) {
-		insieme.remove(merce);
-	}
-
-	public boolean contains (HashSet<Merce> insieme, Merce merce) {
-		return insieme.contains(merce);
-	}
-	
 }

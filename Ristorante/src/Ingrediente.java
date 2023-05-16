@@ -27,7 +27,7 @@ public class Ingrediente extends Merce {
 		HashMap <Piatto, Integer> piatti = prenotazione.elencoPiatti(); //sappiamo quali piatti nelle rispettive quantità
 		for (Piatto piatto : piatti.keySet()) { //per ogni piatto valutiamo il nome
 			Ricetta ricetta = piatto.trovaRicetta(piatto, ricettario); // vediamo se esiste una ricetta associata
-			HashSet<Ingrediente> ingredienti = ricetta.getIngredienti(); // dalla ricetta ricaviamo l'elendo di ingredienti (e quindi anche le dosi)
+			HashSet<Ingrediente> ingredienti = ricetta.getIngredienti(); // dalla ricetta ricaviamo l'elenco di ingredienti (e quindi anche le dosi)
 			int numPorzioniRicetta = ricetta.getNumPorzioni(); // dalla ricetta ricaviaamo quante porzioni soddisfa
 			int coefficiente = (int) Math.ceil((double) prenotazione.elencoPiatti().get(piatto) / numPorzioniRicetta); //coef. che va moltiplicato per ogni ingrediente
 			for (Ingrediente ingrediente : ingredienti) {

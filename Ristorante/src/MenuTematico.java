@@ -3,15 +3,16 @@ import java.util.TreeSet;
 
 public class MenuTematico extends Menu {
 	
+	private String tipoMT = "menu alla carta";
+	
 	private String nome;
-	private TreeSet<Periodo> durata;
 	private double caricoLavoroMenuT;
 	
 	public MenuTematico(String nome, TreeSet<Periodo> durata) {
 		super();
+		this.tipo = tipoMT;
 		this.nome = nome;
 		this.creaElenco(); //creazione elenco vuoto per i piatti del menu tematico
-		this.durata = durata;
 	}
 
 	public String getNome() {
@@ -20,14 +21,6 @@ public class MenuTematico extends Menu {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public TreeSet<Periodo> getDurata() {
-		return durata;
-	}
-
-	public void setDurata(TreeSet<Periodo> durata) {
-		this.durata = durata;
 	}
 
 	public double getCaricoLavoroMenuT() {

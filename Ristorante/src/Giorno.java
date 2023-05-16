@@ -16,4 +16,8 @@ public class Giorno extends Periodo {
 		this.giorno = giorno;
 	}
 	
+	public boolean contains (LocalDate data, LocalDate inizio, LocalDate fine) {
+        return (data.isEqual(inizio) || data.isAfter(inizio)) &&
+               (data.isEqual(fine) || data.isBefore(fine));
+    }
 }
