@@ -57,14 +57,30 @@ public class Giornata {
 	}
 	
 	public void ritornaListaSpesa(Ristorante ristorante) {
-		HashSet<Merce> temp = new HashSet<>();
+		HashSet<Merce> conDuplicati = new HashSet<>();
+		HashSet<Merce> noDuplicati = new HashSet<>();
 		
 		for (Prenotazione pren : prenotazioni) {
-			temp.addAll(Ingrediente.creaListaIngredientiDaPrenotazione(pren, ristorante.getRicettario()));
-			temp.addAll(Bevanda.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeB()));
-			temp.addAll(GenereExtra.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeGE()));
+			conDuplicati.addAll(Ingrediente.creaListaIngredientiDaPrenotazione(pren, ristorante.getRicettario()));
+			conDuplicati.addAll(Bevanda.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeB()));
+			conDuplicati.addAll(GenereExtra.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeGE()));
+			
+			//gestione dei duplicati che toglie i duplicati
+			Merce.gestioneDuplicati(noDuplicati, conDuplicati);
 		}
-		daComprare.setLista(temp);
+		
+		//settiamo la lista della spesa dalla lista senza duplicati
+		daComprare.setLista(noDuplicati);
+	}
+	
+	
+	//metodo che ci ritorna il numero totale dei coperti della giornata
+	public int numCopertiPrenotati () {
+		int num = 0;
+		for (Prenotazione pren : prenotazioni) {
+			num += pren.getNumCoperti();
+		}
+		return num;
 	}
 	
 }

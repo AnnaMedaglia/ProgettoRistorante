@@ -7,7 +7,7 @@ public abstract class Merce {
 	protected String unitàMisura;
 	private double dose; //dose per ingrediente, consumoProCapite per Bevanda e Genere Extra
 	private Giorno scadenza;
-	private boolean qualità;
+	private boolean qualità = true;
 	
 	public String getNome() {
 		return nome;
@@ -50,7 +50,7 @@ public abstract class Merce {
 		this.scadenza = scadenza;
 	}
 
-	public boolean isQualità() {
+	public boolean getQualità() {
 		return qualità;
 	}
 
@@ -70,17 +70,21 @@ public abstract class Merce {
 	}
 	
 	
-	public static HashSet<Merce> gestioneDuplicati(HashSet<? extends Merce> conDuplicati){
-		HashSet<Merce> noDuplicati = new HashSet<>();
+	public static void gestioneDuplicati(HashSet<Merce> noDuplicati, HashSet<? extends Merce> conDuplicati){
 		for (Merce merce : conDuplicati) {
-			Merce merceTrovata = trovaMerceDaNome(conDuplicati, merce.getNome());
-			if (conDuplicati.contains(merceTrovata)) { // se lista contiene il nome della merce va aggiornato il numero della quantità
-				double doseIniziale = merceTrovata.getDose();
-				merce.setDose(doseIniziale+merce.getDose());
+			if (noDuplicati.contains(merce)) {
+				Merce esistente = trovaMerceDaNome(noDuplicati, merce.getNome());
+				esistente.setDose(esistente.getDose()+merce.getDose());
+			} else {
 				noDuplicati.add(merce);
-				} // se lista non contiene l'elemento merce si aggiunge così com'è 
-			else noDuplicati.add(merce);
+			}
 		}
-		return noDuplicati;
+	}
+	
+	public boolean èScaduto(Giorno giornoAttuale) {
+		if (giornoAttuale.getGiorno().isAfter(scadenza.getGiorno()) || giornoAttuale.getGiorno().isEqual(scadenza.getGiorno())) {
+			qualità = false; //se il prodotto è scaduto, la qualità = false 
+		}
+		return qualità;
 	}
 }

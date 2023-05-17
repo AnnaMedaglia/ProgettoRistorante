@@ -11,45 +11,27 @@ public class Ingrediente extends Merce {
 	}
 
 	//servirà per la lista della spesa
-			public static HashSet<Merce> creaListaIngredientiDaPrenotazione (Prenotazione prenotazione, HashSet<Ricetta> ricettario){
-				HashSet<Merce> listaI = new HashSet<>();
-				HashMap <Piatto, Integer> piatti = prenotazione.elencoPiatti(); //sappiamo quali piatti nelle rispettive quantità
-				for (Piatto piatto : piatti.keySet()) { //per ogni piatto valutiamo il nome
-					Ricetta ricetta = piatto.trovaRicetta(piatto, ricettario); // vediamo se esiste una ricetta associata
-					HashSet<Ingrediente> ingredienti = ricetta.getIngredienti(); // dalla ricetta ricaviamo l'elenco di ingredienti (e quindi anche le dosi)
-					int numPorzioniRicetta = ricetta.getNumPorzioni(); // dalla ricetta ricaviaamo quante porzioni soddisfa
-					int coefficiente = (int) Math.ceil((double) prenotazione.elencoPiatti().get(piatto) / numPorzioniRicetta); //coef. che va moltiplicato per ogni ingrediente
-					for (Ingrediente ingrediente : ingredienti) {
-						ingrediente.setDose(coefficiente * ingrediente.getDose());
-					} // così abbiamo la lista degli ingredienti con le dosi aggiornate
-					
-					//dobbiamo inserire la lista degli ingredienti ottenuta nella listaI → va fatto il controllo dei duplicati
-				/*	for (Ingrediente ing : ingredienti) {
-						Merce merceTrovata = trovaMerceDaNome(ingredienti, ing.getNome());
-						if (listaI.contains(merceTrovata)) { // se listaI contiene il nome dell'ingrediente va aggiornato il numero della quantità
-							Ingrediente daModificare = ing;
-							double doseIniziale = merceTrovata.getDose();
-							daModificare.setDose(doseIniziale+ing.getDose());
-						} // se listaI non contiene l'ingrediente si aggiunge così com'è 
-						else listaI.add(ing);
-					}
-				*/
-					listaI = Merce.gestioneDuplicati(ingredienti);
-				}
-				return listaI;
-			}
+	public static HashSet<Merce> creaListaIngredientiDaPrenotazione (Prenotazione prenotazione, HashSet<Ricetta> ricettario){
+		HashSet<Merce> listaIngredientiNoDuplicati = new HashSet<>();
+		
+		HashMap<Piatto, Integer> elencoPiatti= prenotazione.elencoPiatti();
+		
+		// per ogni piatto di elencoPiatti va trovata la Ricetta associata
+		for (Piatto piatto : elencoPiatti.keySet()) {
+			Ricetta ricetta = Ricetta.trovaRicetta(piatto, ricettario);
 			
-	/*		public static Merce trovaMerceDaNome(HashSet<Ingrediente> insieme, String nome){
-				Merce trovata;
-				for(Merce merce : insieme) {
-					if (merce.getNome()==nome) {
-						trovata = merce;
-						return trovata;
-					}
-				}
-			return null;
-			}
-	*/
-	
+			HashSet<Ingrediente> ingredienti = ricetta.getIngredienti(); // dalla ricetta ricaviamo l'elenco di ingredienti (e quindi anche le dosi)
+			int numPorzioniRicetta = ricetta.getNumPorzioni(); // dalla ricetta ricaviaamo quante porzioni soddisfa
+			int coefficiente = (int) Math.ceil((double) prenotazione.elencoPiatti().get(piatto) / numPorzioniRicetta); //coef. che va moltiplicato per ogni ingrediente
+			
+			for (Ingrediente ingrediente : ingredienti) {
+				ingrediente.setDose(coefficiente * ingrediente.getDose());
+			} // così abbiamo la lista degli ingredienti di una ricetta con le dosi aggiornate
+			
+			//andiamo a eliminare i duplicati dalla lista ingredienti
+			Merce.gestioneDuplicati(listaIngredientiNoDuplicati, ingredienti);
+		}
+		return listaIngredientiNoDuplicati;
+	}
 	
 }

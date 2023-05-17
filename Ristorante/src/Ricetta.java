@@ -46,6 +46,18 @@ public class Ricetta {
 		this.caricoLavoroPorzione = caricoLavoroPorzione;
 	}
 	
-	
+	//metodo che associa un piatto a una ricetta
+		public static Ricetta trovaRicetta(Piatto piatto, HashSet<Ricetta> ricettario) {
+			Ricetta trovata;
+			String nome = piatto.getDenominazione();
+			for (Ricetta ric : ricettario) {
+				if (ric.getNome()==nome) {
+					trovata = ric;
+					return trovata;
+				}
+			}
+			System.out.println("Non esiste una ricetta con questo nome");
+			return null;
+		}
 	
 }
