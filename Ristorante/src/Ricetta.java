@@ -1,15 +1,16 @@
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Ricetta {
 	
 	private String nome;
-	private HashSet<Ingrediente> ingredienti; 
+	private HashMap<Ingrediente,Double> ingredienti; 
 	private int numPorzioni;
 	private double caricoLavoroPorzione;
 	
 	public Ricetta(String nome, int numPorzioni, double caricoLavoroPorzione) {
 		this.nome = nome;
-		this.ingredienti = new HashSet<>();
+		this.ingredienti = new HashMap<>();
 		this.numPorzioni = numPorzioni;
 		this.caricoLavoroPorzione = caricoLavoroPorzione;
 	}
@@ -22,11 +23,11 @@ public class Ricetta {
 		this.nome = nome;
 	}
 
-	public HashSet<Ingrediente> getIngredienti() {
+	public HashMap<Ingrediente, Double> getIngredienti() {
 		return ingredienti;
 	}
 
-	public void setIngredienti(HashSet<Ingrediente> ingredienti) {
+	public void setIngredienti(HashMap<Ingrediente, Double> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
 

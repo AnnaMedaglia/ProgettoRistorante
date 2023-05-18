@@ -1,11 +1,12 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Merce {
 	
 	private String nome;
 	protected String tipo;
 	protected String unitàMisura;
-	private double dose; //dose per ingrediente, consumoProCapite per Bevanda e Genere Extra
 	private Giorno scadenza;
 	private boolean qualità = true;
 	
@@ -33,15 +34,6 @@ public abstract class Merce {
 		this.unitàMisura = unitàMisura;
 	}
 	
-	public double getDose() {
-		return dose;
-	}
-
-	public void setDose(double dose) {
-		this.dose = dose;
-	}
-
-	
 	public Giorno getScadenza() {
 		return scadenza;
 	}
@@ -58,7 +50,7 @@ public abstract class Merce {
 		this.qualità = qualità;
 	}
 	
-	public static Merce trovaMerceDaNome(HashSet<? extends Merce> insieme, String nome){
+	public static Merce trovaMerceDaNome(Set<? extends Merce> insieme, String nome){
 		Merce trovata;
 		for(Merce merce : insieme) {
 			if (merce.getNome()==nome) {
@@ -70,16 +62,6 @@ public abstract class Merce {
 	}
 	
 	
-	public static void gestioneDuplicati(HashSet<Merce> noDuplicati, HashSet<? extends Merce> conDuplicati){
-		for (Merce merce : conDuplicati) {
-			if (noDuplicati.contains(merce)) {
-				Merce esistente = trovaMerceDaNome(noDuplicati, merce.getNome());
-				esistente.setDose(esistente.getDose()+merce.getDose());
-			} else {
-				noDuplicati.add(merce);
-			}
-		}
-	}
 	
 	public boolean èScaduto(Giorno giornoAttuale) {
 		if (giornoAttuale.getGiorno().isAfter(scadenza.getGiorno()) || giornoAttuale.getGiorno().isEqual(scadenza.getGiorno())) {

@@ -4,12 +4,34 @@ import java.util.HashSet;
 public class Ingrediente extends Merce {
 
 	private String tipoI = "ingrediente";
+	private double dose; 
 	
-	public Ingrediente(){
+	public Ingrediente(double dose){
 		super();
+		this.dose = dose;
 		this.tipo = tipoI;
 	}
 
+	public double getDose() {
+		return dose;
+	}
+
+	public void setDose(double dose) {
+		this.dose = dose;
+	}
+	
+
+	public static void gestioneDuplicati(HashMap<Merce, Double> noDuplicati, HashMap<? extends Merce, Double> conDuplicati){
+		for (Merce merce : conDuplicati.keySet()) {
+			if (noDuplicati.keySet().contains(merce)) {
+				Merce esistente = trovaMerceDaNome(noDuplicati.keySet(), merce.getNome());
+				noDuplicati.put(esistente, noDuplicati.get(esistente)+ conDuplicati.get(merce));
+			} else {
+				noDuplicati.put(merce, conDuplicati.get(merce));
+			}
+		}
+	}
+	
 	//servirà per la lista della spesa
 	public static HashSet<Merce> creaListaIngredientiDaPrenotazione (Prenotazione prenotazione, HashSet<Ricetta> ricettario){
 		HashSet<Merce> listaIngredientiNoDuplicati = new HashSet<>();

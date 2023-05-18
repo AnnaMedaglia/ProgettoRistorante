@@ -1,24 +1,24 @@
+import java.util.HashMap;
 import java.util.HashSet;
 public class ListaSpesa {
 	
-	private HashSet<Merce> lista;
+	private HashMap<Merce, Double> lista;
 	
 	public ListaSpesa(Giorno data) {
-		this.lista = new HashSet<>();
+		this.lista = new HashMap<>();
 	}
-
-
-	public HashSet<Merce> getLista() {
+	
+	public HashMap<Merce, Double> getLista() {
 		return lista;
 	}
 
-	public void setLista(HashSet<Merce> lista) {
+	public void setLista(HashMap<Merce, Double> lista) {
 		this.lista = lista;
 	}
-	
+
 	public HashSet<Ingrediente> getIngredienti () {
 		HashSet<Ingrediente> ingredienti = new HashSet<>();
-		for (Merce merce : lista) {
+		for (Merce merce : lista.keySet()) {
 			if (merce instanceof Ingrediente) {
 				ingredienti.add((Ingrediente) merce);
 			}
