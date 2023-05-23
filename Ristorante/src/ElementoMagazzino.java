@@ -8,6 +8,11 @@ public class ElementoMagazzino {
 	        this.quantità = quantità;
 	    }
 
+	    public ElementoMagazzino (String merce, double quantità) {
+	    	this.merce = Merce.trovaMerceDaNome(merce, merce); ???
+	    	this.quantità = quantità;
+	    }
+	    
 	    public Merce getMerce() {
 	        return merce;
 	    }

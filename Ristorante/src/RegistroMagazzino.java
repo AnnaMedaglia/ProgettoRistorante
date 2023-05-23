@@ -58,11 +58,25 @@ public class RegistroMagazzino {
         }
     }
 
+	public HashSet<ElementoMagazzino> prodottiComprati (ListaSpesa lista){
+		HashSet<ElementoMagazzino> prodottiComprati = new HashSet<>();
+		for (String daComprare : lista.getLista().keySet()) {
+			ElementoMagazzino nuovoElemento = new ElementoMagazzino(daComprare, lista.getLista().get(daComprare));
+			prodottiComprati.add(nuovoElemento);
+		}
+		return prodottiComprati;
+	}
+	
 	//per ogni merce della lista dei prodotti acquistati inseriamo nel registro la merce con la dose aggiornata
 	public void acquistatiI () {
 		ListaSpesa lista = giornata.getDaComprare();
-		for (Merce merce : lista.getLista()) {
-			aggiungiMerce(merce, merce.getDose());
+		
+		//si comprano i prodotti
+		HashSet<ElementoMagazzino> prodottiComprati = prodottiComprati(lista); //i prodotti vanno registrati dal magazziniere 
+		
+		//i prodotti comprati vanno inseriti nel magazzino
+		for (ElementoMagazzino merce : prodottiComprati) {
+			aggiungiMerce(merce.getMerce(), merce.getQuantità());
 		}
 	}
 	
