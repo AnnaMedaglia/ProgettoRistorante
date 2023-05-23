@@ -1,12 +1,10 @@
 public class Bevanda extends Extra {
 
-	private String tipoB = "bevanda";
-	private String unitàMisuraB = "l";
+	private static String tipoB = "bevanda";
+	private static String unitàMisuraB = "l";
 	
-	public Bevanda() {
-		super();
-		this.tipo = tipoB;
-		this.unitàMisura = unitàMisuraB;
+	public Bevanda(double consumoProCapite) {
+		super(tipoB, unitàMisuraB, consumoProCapite);
 	}
 	
 	

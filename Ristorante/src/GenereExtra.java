@@ -1,12 +1,10 @@
 public class GenereExtra extends Extra {
 
-	private String tipoGE = "genere extra";
-	private String unitàMisuraGE = "hg";
+	private static String tipoGE = "genere extra";
+	private static String unitàMisuraGE = "hg";
 	
-	public GenereExtra() {
-		super();
-		this.tipo = tipoGE;
-		this.unitàMisura = unitàMisuraGE;
+	public GenereExtra(double consumoProCapite) {
+		super(tipoGE, unitàMisuraGE, consumoProCapite);
 	}
 		
 	

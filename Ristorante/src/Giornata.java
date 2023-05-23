@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.HashMap;
 
 public class Giornata {
 	
@@ -56,14 +57,14 @@ public class Giornata {
 		this.menuTematici = menuTematici;
 	}
 	
-	public void ritornaListaSpesa(Ristorante ristorante) {
-		HashSet<Merce> conDuplicati = new HashSet<>();
-		HashSet<Merce> noDuplicati = new HashSet<>();
+	public void setListaSpesa(Ristorante ristorante) {
+		HashMap<String, Double> conDuplicati = new HashMap<>();
+		HashMap<String, Double> noDuplicati = new HashMap<>();
 		
 		for (Prenotazione pren : prenotazioni) {
-			conDuplicati.addAll(Ingrediente.creaListaIngredientiDaPrenotazione(pren, ristorante.getRicettario()));
-			conDuplicati.addAll(Bevanda.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeB()));
-			conDuplicati.addAll(GenereExtra.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeGE()));
+			conDuplicati.putAll(Ingrediente.creaListaIngredientiDaPrenotazione(pren, ristorante.getRicettario()));
+			conDuplicati.putAll(Extra.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeB()));
+			conDuplicati.putAll(Extra.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeGE()));
 			
 			//gestione dei duplicati che toglie i duplicati
 			Merce.gestioneDuplicati(noDuplicati, conDuplicati);

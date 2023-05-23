@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Merce {
@@ -10,6 +9,12 @@ public abstract class Merce {
 	private Giorno scadenza;
 	private boolean qualità = true;
 	
+	//creiamo un costruttore per inizializzare gli attributi
+	public Merce(String tipo, String unitàMisura) {
+		this.tipo = tipo;
+		this.unitàMisura = unitàMisura;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -61,7 +66,15 @@ public abstract class Merce {
 	return null;
 	}
 	
-	
+	public static void gestioneDuplicati(HashMap<String, Double> noDuplicati, HashMap<String, Double> conDuplicati){
+		for (String merce : conDuplicati.keySet()) {
+			if (noDuplicati.keySet().contains(merce)) {
+				noDuplicati.put(merce, noDuplicati.get(merce)+ conDuplicati.get(merce));
+			} else {
+				noDuplicati.put(merce, conDuplicati.get(merce));
+			}
+		}
+	}
 	
 	public boolean èScaduto(Giorno giornoAttuale) {
 		if (giornoAttuale.getGiorno().isAfter(scadenza.getGiorno()) || giornoAttuale.getGiorno().isEqual(scadenza.getGiorno())) {

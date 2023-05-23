@@ -3,13 +3,12 @@ import java.util.HashSet;
 
 public class Ingrediente extends Merce {
 
-	private String tipoI = "ingrediente";
+	private static String tipoI = "ingrediente";
 	private double dose; 
 	
-	public Ingrediente(double dose){
-		super();
+	public Ingrediente(String unitàMisura, double dose){
+		super(tipoI, unitàMisura);
 		this.dose = dose;
-		this.tipo = tipoI;
 	}
 
 	public double getDose() {
@@ -20,16 +19,6 @@ public class Ingrediente extends Merce {
 		this.dose = dose;
 	}
 	
-
-	public static void gestioneDuplicati(HashMap<String, Double> noDuplicati, HashMap<String, Double> conDuplicati){
-		for (String merce : conDuplicati.keySet()) {
-			if (noDuplicati.keySet().contains(merce)) {
-				noDuplicati.put(merce, noDuplicati.get(merce)+ conDuplicati.get(merce));
-			} else {
-				noDuplicati.put(merce, conDuplicati.get(merce));
-			}
-		}
-	}
 	
 	//servirà per la lista della spesa
 	public static HashMap<String, Double> creaListaIngredientiDaPrenotazione (Prenotazione prenotazione, HashSet<Ricetta> ricettario){
@@ -56,7 +45,7 @@ public class Ingrediente extends Merce {
 			} // così abbiamo la lista degli ingredienti di una ricetta con le dosi aggiornate
 			
 			//andiamo a eliminare i duplicati dalla lista ingredienti
-			gestioneDuplicati(listaIngredientiNoDuplicati, ingredienti);
+			Merce.gestioneDuplicati(listaIngredientiNoDuplicati, ingredienti);
 		}
 		return listaIngredientiNoDuplicati;
 	}

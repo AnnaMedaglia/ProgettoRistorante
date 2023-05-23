@@ -5,6 +5,12 @@ public abstract class Extra extends Merce {
 	
 	private double consumoProCapite; 
 	
+	//costruttore per inizializzare gli attributi
+	public Extra(String tipo, String unitàMisura, double consumoProCapite) {
+		super (tipo, unitàMisura);
+		this.consumoProCapite = consumoProCapite;
+	}
+
 	public double getConsumoProCapite() {
 		return consumoProCapite;
 	}
@@ -13,16 +19,15 @@ public abstract class Extra extends Merce {
 		this.consumoProCapite = consumoProCapite;
 	}
 
-			//questo metodo vale sia per l'insieme delle Bevande, sia per quello dei generi Extra
-			public static HashMap<String, Double> creaListaExtraDaPrenotazione (Prenotazione prenotazione, HashSet<? extends Extra> insieme){
-				HashMap<String, Double> listaExtra = new HashMap<>();
-				
-				int num = prenotazione.getNumCoperti(); 
-				
-				for (Extra extra : insieme) {
-					listaExtra.put(extra.getNome(), num*extra.getConsumoProCapite());
-				}
-				
-				return listaExtra;
+	//questo metodo vale sia per l'insieme delle Bevande, sia per quello dei generi Extra
+	public static HashMap<String, Double> creaListaExtraDaPrenotazione (Prenotazione prenotazione, HashSet<? extends Extra> insieme){
+		HashMap<String, Double> listaExtra = new HashMap<>();		
+		int num = prenotazione.getNumCoperti(); 
+	
+		for (Extra extra : insieme) {
+			listaExtra.put(extra.getNome(), num*extra.getConsumoProCapite());
 			}
+			
+		return listaExtra;	
+		}
 }
