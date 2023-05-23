@@ -2,28 +2,28 @@ import java.util.HashMap;
 import java.util.HashSet;
 public class ListaSpesa {
 	
-	private HashMap<Merce, Double> lista;
+	private HashMap<String, Double> lista;
 	
 	public ListaSpesa(Giorno data) {
 		this.lista = new HashMap<>();
 	}
 	
-	public HashMap<Merce, Double> getLista() {
+	public HashMap<String, Double> getLista() {
 		return lista;
 	}
 
-	public void setLista(HashMap<Merce, Double> lista) {
+	public void setLista(HashMap<String, Double> lista) {
 		this.lista = lista;
 	}
 
-	public HashSet<Ingrediente> getIngredienti () {
-		HashSet<Ingrediente> ingredienti = new HashSet<>();
-		for (Merce merce : lista.keySet()) {
+	/*public HashSet<String> getIngredienti () {
+		HashSet<String> ingredienti = new HashSet<>();
+		for (String merce : lista.keySet()) {
 			if (merce instanceof Ingrediente) {
-				ingredienti.add((Ingrediente) merce);
+				ingredienti.add(merce);
 			}
 		}
 		return ingredienti;
 	}
-	
+*/	
 }

@@ -4,7 +4,7 @@ import java.util.HashSet;
 public class Ricetta {
 	
 	private String nome;
-	private HashMap<Ingrediente,Double> ingredienti; 
+	private HashMap<String,Double> ingredienti; 
 	private int numPorzioni;
 	private double caricoLavoroPorzione;
 	
@@ -23,11 +23,11 @@ public class Ricetta {
 		this.nome = nome;
 	}
 
-	public HashMap<Ingrediente, Double> getIngredienti() {
+	public HashMap<String, Double> getIngredienti() {
 		return ingredienti;
 	}
 
-	public void setIngredienti(HashMap<Ingrediente, Double> ingredienti) {
+	public void setIngredienti(HashMap<String, Double> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
 

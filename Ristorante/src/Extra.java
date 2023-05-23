@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class Extra extends Merce {
@@ -13,15 +14,14 @@ public abstract class Extra extends Merce {
 	}
 
 			//questo metodo vale sia per l'insieme delle Bevande, sia per quello dei generi Extra
-			public static HashSet<Merce> creaListaExtraDaPrenotazione (Prenotazione prenotazione, HashSet<? extends Extra> insieme){
-				HashSet<Merce> listaExtra = new HashSet<>();
+			public static HashMap<String, Double> creaListaExtraDaPrenotazione (Prenotazione prenotazione, HashSet<? extends Extra> insieme){
+				HashMap<String, Double> listaExtra = new HashMap<>();
 				
-				int num = prenotazione.getNumCoperti();
+				int num = prenotazione.getNumCoperti(); 
 				
-				for (Merce merce : insieme) {
-					merce.setDose((merce.getDose()*num));
-					listaExtra.add(merce);
-				}		
+				for (Extra extra : insieme) {
+					listaExtra.put(extra.getNome(), num*extra.getConsumoProCapite());
+				}
 				
 				return listaExtra;
 			}
