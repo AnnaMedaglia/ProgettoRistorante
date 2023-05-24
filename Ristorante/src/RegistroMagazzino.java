@@ -6,13 +6,8 @@ public class RegistroMagazzino {
 	
 	private HashMap<String, PriorityQueue<ElementoMagazzino>> registro;
 
- 	private Giornata giornata;
-	
-	
-
-	public RegistroMagazzino(Giornata giornata) {
+	public RegistroMagazzino() {
 		this.registro = new HashMap<>();
-		this.giornata = giornata;
 	}
 
 	
@@ -24,14 +19,6 @@ public class RegistroMagazzino {
 		this.registro = registro;
 	}
 
-	public Giornata getGiornata() {
-		return giornata;
-	}
-
-	public void setGiornata(Giornata giornata) {
-		this.giornata = giornata;
-	}
-	
 	public void aggiungiMerce(Merce merce, double quantità) {
 		String nomeMerce = merce.getNome();
 
@@ -58,21 +45,21 @@ public class RegistroMagazzino {
         }
     }
 
-	public HashSet<ElementoMagazzino> prodottiComprati (ListaSpesa lista){
+	public HashSet<ElementoMagazzino> prodottiComprati (ListaSpesa lista, HashSet<? extends Merce> comprati){
 		HashSet<ElementoMagazzino> prodottiComprati = new HashSet<>();
 		for (String daComprare : lista.getLista().keySet()) {
-			ElementoMagazzino nuovoElemento = new ElementoMagazzino(daComprare, lista.getLista().get(daComprare));
+			ElementoMagazzino nuovoElemento = new ElementoMagazzino(daComprare, lista.getLista().get(daComprare), comprati);
 			prodottiComprati.add(nuovoElemento);
 		}
 		return prodottiComprati;
 	}
 	
 	//per ogni merce della lista dei prodotti acquistati inseriamo nel registro la merce con la dose aggiornata
-	public void acquistatiI () {
+	public void acquistatiI (Giornata giornata, HashSet<? extends Merce> comprati) {
 		ListaSpesa lista = giornata.getDaComprare();
 		
 		//si comprano i prodotti
-		HashSet<ElementoMagazzino> prodottiComprati = prodottiComprati(lista); //i prodotti vanno registrati dal magazziniere 
+		HashSet<ElementoMagazzino> prodottiComprati = prodottiComprati(lista, comprati); //i prodotti vanno registrati dal magazziniere 
 		
 		//i prodotti comprati vanno inseriti nel magazzino
 		for (ElementoMagazzino merce : prodottiComprati) {
@@ -80,7 +67,7 @@ public class RegistroMagazzino {
 		}
 	}
 	
-	public void inCucinaO () {
+/*	public void inCucinaO () {
 		//facciamo riferimento alla lista della spesa della giornata perchè i prodotti vengono acquistati giorno per giorno 
 		//e quindi quelli portati in cucina sono per forza quelli comprati per quella giornata
 		ListaSpesa lista = giornata.getDaComprare();
@@ -122,5 +109,5 @@ public class RegistroMagazzino {
 			}
 		}
 	}
-
+*/
 }

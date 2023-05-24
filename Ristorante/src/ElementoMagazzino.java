@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class ElementoMagazzino {
 	 
 	private Merce merce;
@@ -8,8 +10,8 @@ public class ElementoMagazzino {
 	        this.quantità = quantità;
 	    }
 
-	    public ElementoMagazzino (String merce, double quantità) {
-	    	this.merce = Merce.trovaMerceDaNome(merce, merce); ???
+	    public ElementoMagazzino (String merce, double quantità, HashSet<? extends Merce> insieme) {
+	    	this.merce = Merce.trovaMerceDaNome(insieme, merce);
 	    	this.quantità = quantità;
 	    }
 	    

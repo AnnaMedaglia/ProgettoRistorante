@@ -1,14 +1,15 @@
 public class GenereExtra extends Extra {
 
-	private static String tipoGE = "genere extra";
+	protected static String tipoGE = "genere extra";
 	private static String unitàMisuraGE = "hg";
 	
-	public GenereExtra(double consumoProCapite) {
-		super(tipoGE, unitàMisuraGE, consumoProCapite);
+	public GenereExtra(String nome, double consumoProCapite) {
+		super(nome, tipoGE, unitàMisuraGE, consumoProCapite);
 	}
 		
-	
+	public GenereExtra (String nome, Giorno scadenza, double consumoProCapite) {
+		super(nome, tipoGE, unitàMisuraGE, scadenza, consumoProCapite);
+	}
 
-	
 	
 }

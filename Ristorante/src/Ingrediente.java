@@ -6,8 +6,13 @@ public class Ingrediente extends Merce {
 	private static String tipoI = "ingrediente";
 	private double dose; 
 	
-	public Ingrediente(String unitàMisura, double dose){
-		super(tipoI, unitàMisura);
+	public Ingrediente(String nome, String unitàMisura, double dose){
+		super(nome, tipoI, unitàMisura);
+		this.dose = dose;
+	}
+	
+	public Ingrediente (String nome, Giorno scadenza, double dose) {
+		super(nome, tipoI, scadenza);
 		this.dose = dose;
 	}
 
@@ -19,7 +24,7 @@ public class Ingrediente extends Merce {
 		this.dose = dose;
 	}
 	
-	
+
 	//servirà per la lista della spesa
 	public static HashMap<String, Double> creaListaIngredientiDaPrenotazione (Prenotazione prenotazione, HashSet<Ricetta> ricettario){
 		HashMap<String,Double> listaIngredientiNoDuplicati = new HashMap<>();
