@@ -9,12 +9,7 @@ public class ElementoMagazzino {
 	        this.merce = merce;
 	        this.quantità = quantità;
 	    }
-
-	    public ElementoMagazzino (String merce, double quantità, HashSet<? extends Merce> insieme) {
-	    	this.merce = Merce.trovaMerceDaNome(insieme, merce);
-	    	this.quantità = quantità;
-	    }
-	    
+    
 	    public Merce getMerce() {
 	        return merce;
 	    }

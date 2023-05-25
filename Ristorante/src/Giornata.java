@@ -5,16 +5,19 @@ public class Giornata {
 	
 	private Giorno giorno;
 	private HashSet<Prenotazione> prenotazioni;
-	private ListaSpesa daComprare;
+	private ListaSpesa daComprare; //per quel giorno
+	private HashSet<ElementoMagazzino> comprate; //merci effettivamente comprate inserite dal magazziniere
 	private MenuCarta menuCarta;
 	private HashSet<MenuTematico> menuTematici;
-	
-	public Giornata(Giorno giorno, HashSet<Prenotazione> prenotazioni, MenuCarta menuCarta,
-			HashSet<MenuTematico> menuTematici) {
+
+	public Giornata(Giorno giorno, ListaSpesa daComprare, MenuCarta menuCarta) {
+		super();
 		this.giorno = giorno;
 		this.prenotazioni = new HashSet<>();
+		this.daComprare = daComprare;
+		this.comprate =  new HashSet<>();
 		this.menuCarta = menuCarta;
-		this.menuTematici = new HashSet<>();
+		this.menuTematici =  new HashSet<>();
 	}
 
 	public Giorno getGiorno() {
@@ -39,6 +42,14 @@ public class Giornata {
 
 	public void setDaComprare(ListaSpesa daComprare) {
 		this.daComprare = daComprare;
+	}
+
+	public HashSet<ElementoMagazzino> getComprate() {
+		return comprate;
+	}
+
+	public void setComprate(HashSet<ElementoMagazzino> comprate) {
+		this.comprate = comprate;
 	}
 
 	public MenuCarta getMenuCarta() {

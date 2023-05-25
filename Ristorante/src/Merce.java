@@ -74,17 +74,6 @@ public abstract class Merce {
 		this.qualità = qualità;
 	}
 
-	public static Merce trovaMerceDaNome(Set<? extends Merce> insieme, String nome){
-		Merce trovata;
-		for(Merce merce : insieme) {
-			if (merce.getNome()==nome) {
-				trovata = merce;
-				return trovata;
-			}
-		}
-		return null;
-	}
-
 	//metodo per "registrare" i prodotti acquistati che dovranno essere poi inseriti dal magazziniere nel magazzino
 	public void creaMerce (String nome, String tipo, Giorno scadenza, double consumoProCapite) {
 		switch(tipo) {
@@ -100,7 +89,6 @@ public abstract class Merce {
 		default :
 			throw new IllegalArgumentException("tipo della merce non valido");
 		}
-
 	};
 
 	public static void gestioneDuplicati(HashMap<String, Double> noDuplicati, HashMap<String, Double> conDuplicati){

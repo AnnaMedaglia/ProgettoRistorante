@@ -44,45 +44,31 @@ public class RegistroMagazzino {
             registro.put(nomeMerce, nuovaCoda);
         }
     }
-
-	public HashSet<ElementoMagazzino> prodottiComprati (ListaSpesa lista, HashSet<? extends Merce> comprati){
-		HashSet<ElementoMagazzino> prodottiComprati = new HashSet<>();
-		for (String daComprare : lista.getLista().keySet()) {
-			ElementoMagazzino nuovoElemento = new ElementoMagazzino(daComprare, lista.getLista().get(daComprare), comprati);
-			prodottiComprati.add(nuovoElemento);
-		}
-		return prodottiComprati;
-	}
 	
 	//per ogni merce della lista dei prodotti acquistati inseriamo nel registro la merce con la dose aggiornata
-	public void acquistatiI (Giornata giornata, HashSet<? extends Merce> comprati) {
-		ListaSpesa lista = giornata.getDaComprare();
-		
-		//si comprano i prodotti
-		HashSet<ElementoMagazzino> prodottiComprati = prodottiComprati(lista, comprati); //i prodotti vanno registrati dal magazziniere 
-		
+	public void acquistatiI (Giornata giornata) {	
 		//i prodotti comprati vanno inseriti nel magazzino
-		for (ElementoMagazzino merce : prodottiComprati) {
+		for (ElementoMagazzino merce : giornata.getComprate()) {
 			aggiungiMerce(merce.getMerce(), merce.getQuantità());
 		}
 	}
 	
-/*	public void inCucinaO () {
-		//facciamo riferimento alla lista della spesa della giornata perchè i prodotti vengono acquistati giorno per giorno 
-		//e quindi quelli portati in cucina sono per forza quelli comprati per quella giornata
-		ListaSpesa lista = giornata.getDaComprare();
-		for (Merce ingrediente : lista.getIngredienti()) {
-			double daTogliere = ingrediente.getDose() + (0.1 * ingrediente.getDose()); //consideriamo l'incremento
-		
-			//POX MODIFICA
-			//ingrediente2 = ingrediente che scade prima tra tutti gli ingredienti nel registro a parità di nome
-			//registro.put(ingrediente2 ...)
-			
-			registro.put(ingrediente, registro.getOrDefault(ingrediente, 0.0) - daTogliere);
-		}
+/*	public void inCucinaO (Giornata giornata) {
+		//facciamo riferimento alle merci comprate della giornata perchè i prodotti vengono acquistati giorno per giorno 
+				//e quindi quelli portati in cucina sono per forza quelli comprati per quella giornata
+				ListaSpesa lista = giornata.getDaComprare();
+				for (Merce ingrediente : lista.getIngredienti()) {
+					double daTogliere = ingrediente.getDose() + (0.1 * ingrediente.getDose()); //consideriamo l'incremento
+				
+					//POX MODIFICA
+					//ingrediente2 = ingrediente che scade prima tra tutti gli ingredienti nel registro a parità di nome
+					//registro.put(ingrediente2 ...)
+					
+					registro.put(ingrediente, registro.getOrDefault(ingrediente, 0.0) - daTogliere);
+				}
 	}
 
-	public void extraO (Ristorante ristorante) {
+/*	public void extraO (Ristorante ristorante) {
 		HashSet<Bevanda> bevande = ristorante.getInsiemeB();
 		HashSet<GenereExtra> generiExtra= ristorante.getInsiemeGE();
 		
