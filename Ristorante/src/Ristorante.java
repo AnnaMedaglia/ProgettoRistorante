@@ -63,7 +63,7 @@ public class Ristorante {
 	public HashSet<GenereExtra> getInsiemeGE() {
 		return insiemeGE;
 	}
-	
+
 	public void setInsiemeGE(HashSet<GenereExtra> insiemeGE) {
 		this.insiemeGE = insiemeGE;
 	}
@@ -72,11 +72,11 @@ public class Ristorante {
 	public HashSet<Bevanda> getInsiemeB() {
 		return insiemeB;
 	}
-	
+
 	public void setInsiemeB(HashSet<Bevanda> insiemeB) {
 		this.insiemeB = insiemeB;
 	}
-	
+
 	public HashSet<Ricetta> getRicettario() {
 		return ricettario;
 	}
@@ -84,6 +84,6 @@ public class Ristorante {
 	public void setRicettario(HashSet<Ricetta> ricettario) {
 		this.ricettario = ricettario;
 	}
-	
+
 
 }

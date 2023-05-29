@@ -9,13 +9,13 @@ public abstract class Merce {
 	private boolean qualita = true;
 
 	//creiamo un costruttore per inizializzare alcuni gli attributi â†’ l'unitÃ  di misura andra' settata con il set
-		public Merce(String nome, String tipo, Giorno scadenza) {
-			this.nome = nome;
-			this.tipo = tipo;
-			this.scadenza = scadenza;
-			this.qualita = true;
-		}
-	
+	public Merce(String nome, String tipo, Giorno scadenza) {
+		this.nome = nome;
+		this.tipo = tipo;
+		this.scadenza = scadenza;
+		this.qualita = true;
+	}
+
 	//creiamo un costruttore per inizializzare alcuni gli attributi
 	public Merce(String nome, String tipo, String unitaMisura) {
 		this.nome = nome;
@@ -83,7 +83,7 @@ public abstract class Merce {
 			new GenereExtra (nome, scadenza, consumoProCapite);
 			break;
 		case "ingrediente" :
-			new Ingrediente (nome, scadenza, consumoProCapite); //il consumo pro capite = dose. unita' Misura con set poi
+			new Ingrediente (nome, scadenza, consumoProCapite); //il consumo pro capite = dose. unita'ï¿½Misura con set poi
 			break;
 		default :
 			throw new IllegalArgumentException("tipo della merce non valido");
@@ -102,7 +102,7 @@ public abstract class Merce {
 
 	public boolean eScaduto(Giorno giornoAttuale) {
 		if (giornoAttuale.getGiorno().isAfter(scadenza.getGiorno()) || giornoAttuale.getGiorno().isEqual(scadenza.getGiorno())) {
-			qualita = false; //se il prodotto e' scaduto, la qualita'  = false 
+			qualita = false; //se il prodotto e' scaduto, la qualita'ï¿½ = false 
 		}
 		return qualita;
 	}

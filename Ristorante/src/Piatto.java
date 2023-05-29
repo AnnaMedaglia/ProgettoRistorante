@@ -1,8 +1,8 @@
 public class Piatto {
-	
+
 	private String denominazione;
 	private double caricoLavoro;
-	
+
 	public Piatto(String denominazione, double caricoLavoro, Ricetta ricetta) {
 		this.denominazione = denominazione;
 		this.caricoLavoro = ricetta.getCaricoLavoroPorzione();
@@ -19,6 +19,6 @@ public class Piatto {
 	public double getCaricoLavoro() {
 		return caricoLavoro;
 	}
-	
-	
+
+
 }

@@ -28,7 +28,7 @@ public class RegistroMagazzino {
 			// Controllo se esiste un elemento con la stessa scadenza
 			for (ElementoMagazzino elemento : codaMerce) {
 				if (elemento.getMerce().getScadenza().equals(merce.getScadenza())) {
-					// Aggiorno la quantita'  se la scadenza e' la stessa
+					// Aggiorno la quantita' se la scadenza e' la stessa
 					elemento.setQuantita(elemento.getQuantita() + quantita);
 					return;
 				}
@@ -59,16 +59,16 @@ public class RegistroMagazzino {
 		if (registro.containsKey(nomeMerce)) {
 			//ottengo la codaMerce relativa a quella merce
 			PriorityQueue<ElementoMagazzino> codaMerce = registro.get(nomeMerce);
-			//devo aggiornare la quantita'  prelevando gli elementi a partire da quello che scade prima
+			//devo aggiornare la quantita'ï¿½ prelevando gli elementi a partire da quello che scade prima
 
-			//se la coda non e' vuota e la quantita'  del primo elemento e' minore della quantita'  data (= non ci sono 
+			//se la coda non e' vuota e la quantita'ï¿½ del primo elemento e' minore della quantita'  data (= non ci sono 
 			//abbastanza merci di quella scadenza) allora continuo a prelevare elementi e a rimuoverli
 			//dalla coda
 			while (!codaMerce.isEmpty() && codaMerce.peek().getQuantita() <= quantita){
 				codaMerce.poll();
 			}
 
-			//se la coda non e' vuota e quindi c'e' un elemento con quantita'  > della quantita'  da prelevare
+			//se la coda non e' vuota e quindi c'e' un elemento con quantita'ï¿½ > della quantita'ï¿½ da prelevare
 			if (!codaMerce.isEmpty()) {
 				ElementoMagazzino elemento = codaMerce.peek();
 				//si setta la nuova quantitÃ 
@@ -93,7 +93,7 @@ public class RegistroMagazzino {
 			Merce trovata = codaMerce.peek().getMerce();
 			//se la merce trovata e' del tipo passato
 			if (trovata.getTipo() == tipo) {
-				//salviamo la quantita'  dalla lista della spesa
+				//salviamo la quantita'ï¿½ dalla lista della spesa
 				double quantita = listaSpesa.getLista().get(nomeMerce);
 				solo1Tipo.put(nomeMerce, quantita);
 			}
@@ -109,7 +109,7 @@ public class RegistroMagazzino {
 
 		//per ogni elemento di soloIngredienti applichi togli le merci dal magazzino
 		for (String nomeIngrediente : soloIngredienti.keySet()) {
-			//la quantita'  va moltiplicata per 1.1 perche' in cucina si deve portare il 10% in piu'
+			//la quantita'ï¿½ va moltiplicata per 1.1 perche' in cucina si deve portare il 10% in piu'
 			togliMerce(nomeIngrediente, soloIngredienti.get(nomeIngrediente) * 1.1);
 		}			
 	}

@@ -2,9 +2,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class Extra extends Merce {
-	
+
 	private double consumoProCapite; 
-	
+
 	//costruttore per inizializzare gli attributi
 	public Extra(String nome, String tipo, String unitaMisura, double consumoProCapite) {
 		super (nome, tipo, unitaMisura);
@@ -28,11 +28,11 @@ public abstract class Extra extends Merce {
 	public static HashMap<String, Double> creaListaExtraDaPrenotazione (Prenotazione prenotazione, HashSet<? extends Extra> insieme){
 		HashMap<String, Double> listaExtra = new HashMap<>();		
 		int num = prenotazione.getNumCoperti(); 
-	
+
 		for (Extra extra : insieme) {
 			listaExtra.put(extra.getNome(), num*extra.getConsumoProCapite());
-			}
-			
-		return listaExtra;	
 		}
+
+		return listaExtra;	
+	}
 }

@@ -2,7 +2,7 @@ import java.util.HashSet;
 import java.util.HashMap;
 
 public class Giornata {
-	
+
 	private Giorno giorno;
 	private HashSet<Prenotazione> prenotazioni;
 	private ListaSpesa daComprare; //per quel giorno
@@ -67,25 +67,25 @@ public class Giornata {
 	public void setMenuTematici(HashSet<MenuTematico> menuTematici) {
 		this.menuTematici = menuTematici;
 	}
-	
+
 	public void setListaSpesa(Ristorante ristorante) {
 		HashMap<String, Double> conDuplicati = new HashMap<>();
 		HashMap<String, Double> noDuplicati = new HashMap<>();
-		
+
 		for (Prenotazione pren : prenotazioni) {
 			conDuplicati.putAll(Ingrediente.creaListaIngredientiDaPrenotazione(pren, ristorante.getRicettario()));
 			conDuplicati.putAll(Extra.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeB()));
 			conDuplicati.putAll(Extra.creaListaExtraDaPrenotazione(pren, ristorante.getInsiemeGE()));
-			
+
 			//gestione dei duplicati che toglie i duplicati
 			Merce.gestioneDuplicati(noDuplicati, conDuplicati);
 		}
-		
+
 		//settiamo la lista della spesa dalla lista senza duplicati
 		daComprare.setLista(noDuplicati);
 	}
-	
-	
+
+
 	//metodo che ci ritorna il numero totale dei coperti della giornata
 	public int numCopertiPrenotati () {
 		int num = 0;
@@ -94,5 +94,5 @@ public class Giornata {
 		}
 		return num;
 	}
-	
+
 }

@@ -1,12 +1,12 @@
 import java.util.HashSet;
 
 public class MenuTematico extends Menu {
-	
+
 	private String tipoMT = "menu alla carta";
-	
+
 	private String nome;
 	private double caricoLavoroMenuT;
-	
+
 	public MenuTematico(String nome) {
 		super();
 		this.tipo = tipoMT;
@@ -33,7 +33,7 @@ public class MenuTematico extends Menu {
 		};
 		this.caricoLavoroMenuT = temp;
 	} 
-	
-	
-	
+
+
+
 }
