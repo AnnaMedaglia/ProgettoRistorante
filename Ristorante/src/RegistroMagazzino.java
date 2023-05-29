@@ -19,7 +19,7 @@ public class RegistroMagazzino {
 		this.registro = registro;
 	}
 
-	public void aggiungiMerce(Merce merce, double quantità) {
+	public void aggiungiMerce(Merce merce, double quantita) {
 		String nomeMerce = merce.getNome();
 
 		if (registro.containsKey(nomeMerce)) {
@@ -28,18 +28,18 @@ public class RegistroMagazzino {
 			// Controllo se esiste un elemento con la stessa scadenza
 			for (ElementoMagazzino elemento : codaMerce) {
 				if (elemento.getMerce().getScadenza().equals(merce.getScadenza())) {
-					// Aggiorno la quantità se la scadenza è la stessa
-					elemento.setQuantità(elemento.getQuantità() + quantità);
+					// Aggiorno la quantita'� se la scadenza e' la stessa
+					elemento.setQuantita(elemento.getQuantita() + quantita);
 					return;
 				}
 			}
 			// Se non esiste un elemento con la stessa scadenza, aggiungo un nuovo elemento nella coda
-			ElementoMagazzino nuovoElemento = new ElementoMagazzino(merce, quantità);
+			ElementoMagazzino nuovoElemento = new ElementoMagazzino(merce, quantita);
 			codaMerce.add(nuovoElemento); //il vincolo sulla scadenza è rispettato per default
 		} else {
-			// Se la merce non è ancora presente nel magazzino, creo una nuova coda e aggiungo il primo elemento
+			// Se la merce non e' ancora presente nel magazzino, creo una nuova coda e aggiungo il primo elemento
 			PriorityQueue<ElementoMagazzino> nuovaCoda = new PriorityQueue<>((em1, em2) -> em1.getMerce().getScadenza().confrontoScadenza(em2.getMerce().getScadenza()));
-			ElementoMagazzino nuovoElemento = new ElementoMagazzino(merce, quantità);
+			ElementoMagazzino nuovoElemento = new ElementoMagazzino(merce, quantita);
 			nuovaCoda.add(nuovoElemento);
 			registro.put(nomeMerce, nuovaCoda);
 		}
@@ -49,32 +49,32 @@ public class RegistroMagazzino {
 	public void acquistatiI (Giornata giornata) {	
 		//i prodotti comprati vanno inseriti nel magazzino
 		for (ElementoMagazzino merce : giornata.getComprate()) {
-			aggiungiMerce(merce.getMerce(), merce.getQuantità());
+			aggiungiMerce(merce.getMerce(), merce.getQuantita());
 		}
 	}
 
 	//metodo richiamato per togliere merci dal registro magazzino
-	public void togliMerce (String nomeMerce, double quantità) {
+	public void togliMerce (String nomeMerce, double quantita) {
 		//se il registro contiene la merce
 		if (registro.containsKey(nomeMerce)) {
 			//ottengo la codaMerce relativa a quella merce
 			PriorityQueue<ElementoMagazzino> codaMerce = registro.get(nomeMerce);
-			//devo aggiornare la quantità prelevando gli elementi a partire da quello che scade prima
+			//devo aggiornare la quantita'� prelevando gli elementi a partire da quello che scade prima
 
-			//se la coda non è vuota e la quantità del primo elemento è minore della quantità data (= non ci sono 
+			//se la coda non e' vuota e la quantita'� del primo elemento e' minore della quantita'  data (= non ci sono 
 			//abbastanza merci di quella scadenza) allora continuo a prelevare elementi e a rimuoverli
 			//dalla coda
-			while (!codaMerce.isEmpty() && codaMerce.peek().getQuantità() <= quantità){
+			while (!codaMerce.isEmpty() && codaMerce.peek().getQuantita() <= quantita){
 				codaMerce.poll();
 			}
 
-			//se la coda non è vuota e quindi c'è un elemento con quantità > della quantità da prelevare
+			//se la coda non e' vuota e quindi c'e' un elemento con quantita'� > della quantita'� da prelevare
 			if (!codaMerce.isEmpty()) {
 				ElementoMagazzino elemento = codaMerce.peek();
 				//si setta la nuova quantità
-				elemento.setQuantità(elemento.getQuantità() - quantità);
+				elemento.setQuantita(elemento.getQuantita() - quantita);
 			} else { 
-				//se la coda è vuota vuol dire che non ci sono più elementi con quel nome nel magazzino
+				//se la coda e' vuota vuol dire che non ci sono piu' elementi con quel nome nel magazzino
 				//quindi va rimossa anche l'etichetta che li rappresenta nella mappa
 				registro.remove(nomeMerce);
 			}
@@ -91,11 +91,11 @@ public class RegistroMagazzino {
 			//otteniamo la relativa priorityqueue
 			PriorityQueue<ElementoMagazzino> codaMerce = registro.get(nomeMerce);
 			Merce trovata = codaMerce.peek().getMerce();
-			//se la merce trovata è del tipo passato
+			//se la merce trovata e' del tipo passato
 			if (trovata.getTipo() == tipo) {
-				//salviamo la quantità dalla lista della spesa
-				double quantità = listaSpesa.getLista().get(nomeMerce);
-				solo1Tipo.put(nomeMerce, quantità);
+				//salviamo la quantita'� dalla lista della spesa
+				double quantita = listaSpesa.getLista().get(nomeMerce);
+				solo1Tipo.put(nomeMerce, quantita);
 			}
 		}
 		return solo1Tipo;
@@ -109,7 +109,7 @@ public class RegistroMagazzino {
 
 		//per ogni elemento di soloIngredienti applichi togli le merci dal magazzino
 		for (String nomeIngrediente : soloIngredienti.keySet()) {
-			//la quantità va moltiplicata per 1.1 perchè in cucina si deve portare il 10% in più 
+			//la quantita'� va moltiplicata per 1.1 perche' in cucina si deve portare il 10% in piu'
 			togliMerce(nomeIngrediente, soloIngredienti.get(nomeIngrediente) * 1.1);
 		}			
 	}
@@ -142,7 +142,7 @@ public class RegistroMagazzino {
 				}
 
 			}
-			if (codaMerce.isEmpty()) { //se la coda è vuota = se non ci sono più elementi
+			if (codaMerce.isEmpty()) { //se la coda e' vuota = se non ci sono piu' elementi
 				registro.remove(merce);//si rimuove la chiave dal registro
 			}
 		}

@@ -69,7 +69,7 @@ public abstract class Merce {
 		return qualita;
 	}
 
-	public void setQualit√†(boolean qualita) {
+	public void setQualita(boolean qualita) {
 		this.qualita = qualita;
 	}
 
@@ -83,7 +83,7 @@ public abstract class Merce {
 			new GenereExtra (nome, scadenza, consumoProCapite);
 			break;
 		case "ingrediente" :
-			new Ingrediente (nome, scadenza, consumoProCapite); //il consumo pro capite = dose. unit√†Misura con set poi
+			new Ingrediente (nome, scadenza, consumoProCapite); //il consumo pro capite = dose. unita'†Misura con set poi
 			break;
 		default :
 			throw new IllegalArgumentException("tipo della merce non valido");
@@ -102,7 +102,7 @@ public abstract class Merce {
 
 	public boolean eScaduto(Giorno giornoAttuale) {
 		if (giornoAttuale.getGiorno().isAfter(scadenza.getGiorno()) || giornoAttuale.getGiorno().isEqual(scadenza.getGiorno())) {
-			qualita = false; //se il prodotto e' scaduto, la qualit√† = false 
+			qualita = false; //se il prodotto e' scaduto, la qualita'† = false 
 		}
 		return qualita;
 	}
