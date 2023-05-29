@@ -1,37 +1,36 @@
 import java.util.HashMap;
-import java.util.Set;
 
 public abstract class Merce {
 
 	private String nome;
 	protected String tipo;
-	protected String unitàMisura;
+	protected String unitaMisura;
 	private Giorno scadenza;
-	private boolean qualità = true;
+	private boolean qualita = true;
 
-	//creiamo un costruttore per inizializzare alcuni gli attributi → l'unità di misura andrà settata con il set
+	//creiamo un costruttore per inizializzare alcuni gli attributi → l'unità di misura andra' settata con il set
 		public Merce(String nome, String tipo, Giorno scadenza) {
 			this.nome = nome;
 			this.tipo = tipo;
 			this.scadenza = scadenza;
-			this.qualità = true;
+			this.qualita = true;
 		}
 	
 	//creiamo un costruttore per inizializzare alcuni gli attributi
-	public Merce(String nome, String tipo, String unitàMisura) {
+	public Merce(String nome, String tipo, String unitaMisura) {
 		this.nome = nome;
 		this.tipo = tipo;
-		this.unitàMisura = unitàMisura;
-		this.qualità = true;
+		this.unitaMisura = unitaMisura;
+		this.qualita = true;
 	}
 
 	//creiamo un costruttore per inizializzare tutti gli attributi
-	public Merce(String nome, String tipo, String unitàMisura, Giorno scadenza) {
+	public Merce(String nome, String tipo, String unitaMisura, Giorno scadenza) {
 		this.nome = nome;
 		this.tipo = tipo;
-		this.unitàMisura = unitàMisura;
+		this.unitaMisura = unitaMisura;
 		this.scadenza = scadenza;
-		this.qualità = true;
+		this.qualita = true;
 	}
 
 	public String getNome() {
@@ -50,12 +49,12 @@ public abstract class Merce {
 		this.tipo = tipo;
 	}
 
-	public String getUnitàMisura() {
-		return unitàMisura;
+	public String getUnitaMisura() {
+		return unitaMisura;
 	}
 
-	public void setUnitàMisura(String unitàMisura) {
-		this.unitàMisura = unitàMisura;
+	public void setUnitaMisura(String unitaMisura) {
+		this.unitaMisura = unitaMisura;
 	}
 
 	public Giorno getScadenza() {
@@ -66,12 +65,12 @@ public abstract class Merce {
 		this.scadenza = scadenza;
 	}
 
-	public boolean getQualità() {
-		return qualità;
+	public boolean getQualita() {
+		return qualita;
 	}
 
-	public void setQualità(boolean qualità) {
-		this.qualità = qualità;
+	public void setQualità(boolean qualita) {
+		this.qualita = qualita;
 	}
 
 	//metodo per "registrare" i prodotti acquistati che dovranno essere poi inseriti dal magazziniere nel magazzino
@@ -101,10 +100,10 @@ public abstract class Merce {
 		}
 	}
 
-	public boolean èScaduto(Giorno giornoAttuale) {
+	public boolean eScaduto(Giorno giornoAttuale) {
 		if (giornoAttuale.getGiorno().isAfter(scadenza.getGiorno()) || giornoAttuale.getGiorno().isEqual(scadenza.getGiorno())) {
-			qualità = false; //se il prodotto è scaduto, la qualità = false 
+			qualita = false; //se il prodotto e' scaduto, la qualità = false 
 		}
-		return qualità;
+		return qualita;
 	}
 }

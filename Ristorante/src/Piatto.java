@@ -1,5 +1,3 @@
-import java.util.HashSet;
-
 public class Piatto {
 	
 	private String denominazione;

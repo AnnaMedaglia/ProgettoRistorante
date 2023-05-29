@@ -136,8 +136,8 @@ public class RegistroMagazzino {
 		for (String merce : registro.keySet()) {
 			PriorityQueue<ElementoMagazzino> codaMerce = registro.get(merce);
 			for (ElementoMagazzino elemento : codaMerce) {
-				codaMerce.peek().getMerce().èScaduto(giornata.getGiorno()); //se scaduto setta la qualità a false
-				if (!codaMerce.peek().getMerce().getQualità()) { //se è scaduto
+				codaMerce.peek().getMerce().eScaduto(giornata.getGiorno()); //se scaduto setta la qualità a false
+				if (!codaMerce.peek().getMerce().getQualita()) { //se è scaduto
 					codaMerce.remove(elemento); //viene rimosso l'elemento dalla coda
 				}
 

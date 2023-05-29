@@ -6,8 +6,8 @@ public class Ingrediente extends Merce {
 	private static String tipoI = "ingrediente";
 	private double dose; 
 	
-	public Ingrediente(String nome, String unitàMisura, double dose){
-		super(nome, tipoI, unitàMisura);
+	public Ingrediente(String nome, String unitaMisura, double dose){
+		super(nome, tipoI, unitaMisura);
 		this.dose = dose;
 	}
 	
@@ -32,11 +32,11 @@ public class Ingrediente extends Merce {
 		Ingrediente.tipoI = tipoI;
 	}
 
-	//servirà per la lista della spesa
+	//servira' per la lista della spesa
 	public static HashMap<String, Double> creaListaIngredientiDaPrenotazione (Prenotazione prenotazione, HashSet<Ricetta> ricettario){
 		HashMap<String,Double> listaIngredientiNoDuplicati = new HashMap<>();
 		
-		// per ogni piatto è associato il numero di persone che l'ha ordinato
+		// per ogni piatto e' associato il numero di persone che l'ha ordinato
 		HashMap<Piatto, Integer> elencoPiatti= prenotazione.elencoPiatti(); 
 		
 		// per ogni piatto di elencoPiatti va trovata la Ricetta associata
@@ -54,7 +54,7 @@ public class Ingrediente extends Merce {
 			
 			for (String ingrediente : ingredienti.keySet()) {
 				ingredienti.put(ingrediente, ingredienti.get(ingrediente) * coefficiente);
-			} // così abbiamo la lista degli ingredienti di una ricetta con le dosi aggiornate
+			} // cosi' abbiamo la lista degli ingredienti di una ricetta con le dosi aggiornate
 			
 			//andiamo a eliminare i duplicati dalla lista ingredienti
 			Merce.gestioneDuplicati(listaIngredientiNoDuplicati, ingredienti);
