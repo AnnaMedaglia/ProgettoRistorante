@@ -64,7 +64,6 @@ public class Prenotazione {
 		return temp;
 	}
 	
-	
 	//metodo che servirà per la lista della spesa relativa alla singola prenotazione
 	public HashMap <Piatto, Integer> elencoPiatti () {
 		HashMap<Piatto, Integer> conteggio = new HashMap<>();

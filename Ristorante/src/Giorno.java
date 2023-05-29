@@ -22,7 +22,7 @@ public class Giorno {
     }
 	
 	public int confrontoScadenza(Giorno giorno2) {
-		return giorno.compareTo(giorno2.getGiorno()); //negativo se giorno scade prima di giorno 2,	
+		return giorno.compareTo(giorno2.getGiorno()); //negativo se giorno scade prima di giorno2,	
 													  //positivo se giorno scade dopo giorno2, 
 												   	  //0 se sono lo stesso giorno
     }

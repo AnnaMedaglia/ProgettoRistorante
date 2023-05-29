@@ -23,7 +23,14 @@ public class Ingrediente extends Merce {
 	public void setDose(double dose) {
 		this.dose = dose;
 	}
-	
+
+	public static String getTipoI() {
+		return tipoI;
+	}
+
+	public static void setTipoI(String tipoI) {
+		Ingrediente.tipoI = tipoI;
+	}
 
 	//servirà per la lista della spesa
 	public static HashMap<String, Double> creaListaIngredientiDaPrenotazione (Prenotazione prenotazione, HashSet<Ricetta> ricettario){
