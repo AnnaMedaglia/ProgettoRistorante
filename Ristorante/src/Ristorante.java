@@ -7,7 +7,7 @@ public class Ristorante {
 	private int caricoLavoroPersona;
 	private int numPosti;
 	private double caricoLavoroRistorante; 
-	private TreeSet<Giornata> giornata;
+	private TreeSet<Giornata> calendario;
 	private HashSet<GenereExtra> insiemeGE;
 	private HashSet<Bevanda> insiemeB;
 	private HashSet<Ricetta> ricettario;
@@ -18,7 +18,7 @@ public class Ristorante {
 		this.caricoLavoroPersona = caricoLavoroPersona;
 		this.numPosti = numPosti;
 		this.caricoLavoroRistorante = (0.2 * (caricoLavoroPersona * numPosti)) + (caricoLavoroPersona * numPosti);
-		this.giornata = new TreeSet<>();
+		this.calendario = new TreeSet<>();
 		this.insiemeGE = new HashSet<>();
 		this.insiemeB = new HashSet<>();
 		this.ricettario = new HashSet<>();
@@ -52,12 +52,12 @@ public class Ristorante {
 		return caricoLavoroRistorante;
 	}
 
-	public TreeSet<Giornata> getGiornata() {
-		return giornata;
+	public TreeSet<Giornata> getCalendario() {
+		return calendario;
 	}
 
-	public void setGiornata(TreeSet<Giornata> giornata) {
-		this.giornata = giornata;
+	public void setCalendario(TreeSet<Giornata> calendario) {
+		this.calendario = calendario;
 	}
 
 	public HashSet<GenereExtra> getInsiemeGE() {
