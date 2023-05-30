@@ -1,5 +1,4 @@
 package Utenti;
-import Ristorante.Ristorante;
 
 public class Gestore extends Utente{
 
@@ -7,10 +6,7 @@ public class Gestore extends Utente{
 
 	public Gestore(String nome) {
 		super(nome, etichettaG);
+		//azioni.put("inizializza", /*this::inizializzaParametri*/);
 	}
 	
-/*	public Ristorante creazioneRistorante() {
-		Ristorante ristorante = new Ristorante();
-	}
-*/	
 }

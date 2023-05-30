@@ -1,5 +1,4 @@
-package Prenotazioni;
-import Utenti.Utente;
+package Utenti;
 
 public class AddettoPrenotazioni extends Utente {
 
