@@ -1,3 +1,4 @@
+package Ristorante;
 public class MenuCarta extends Menu {
 
 	private String tipoMC = "menu alla carta";

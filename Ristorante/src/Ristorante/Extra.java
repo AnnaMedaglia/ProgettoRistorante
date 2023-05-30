@@ -1,5 +1,9 @@
+package Ristorante;
 import java.util.HashMap;
 import java.util.HashSet;
+
+import Prenotazioni.Giorno;
+import Prenotazioni.Prenotazione;
 
 public abstract class Extra extends Merce {
 

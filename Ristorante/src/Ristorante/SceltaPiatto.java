@@ -1,3 +1,4 @@
+package Ristorante;
 import java.util.HashSet;
 
 public class SceltaPiatto extends Scelta {

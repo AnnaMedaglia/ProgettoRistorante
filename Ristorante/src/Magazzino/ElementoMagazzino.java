@@ -1,3 +1,6 @@
+package Magazzino;
+import Ristorante.Merce;
+
 public class ElementoMagazzino {
 
 	private Merce merce;

@@ -1,3 +1,4 @@
+package Util;
 import java.util.*;
 public class Utility {
 	private static Scanner lettore = creaScanner();

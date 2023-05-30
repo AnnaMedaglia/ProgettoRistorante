@@ -1,3 +1,4 @@
+package Ristorante;
 public class Piatto {
 
 	private String denominazione;

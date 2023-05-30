@@ -1,3 +1,4 @@
+package Utenti;
 public abstract class Utente {
 
 	private String nome;

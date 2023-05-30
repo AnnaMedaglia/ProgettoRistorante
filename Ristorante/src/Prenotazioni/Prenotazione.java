@@ -1,4 +1,8 @@
+package Prenotazioni;
 import java.util.HashMap;
+
+import Ristorante.Piatto;
+import Ristorante.Scelta;
 
 public class Prenotazione {
 

@@ -1,3 +1,6 @@
+package Utenti;
+import Ristorante.Ristorante;
+
 public class Gestore extends Utente{
 
 	private static String etichettaG = "gestore";
@@ -6,8 +9,8 @@ public class Gestore extends Utente{
 		super(nome, etichettaG);
 	}
 	
-	public Ristorante creazioneRistorante() {
+/*	public Ristorante creazioneRistorante() {
 		Ristorante ristorante = new Ristorante();
 	}
-	
+*/	
 }

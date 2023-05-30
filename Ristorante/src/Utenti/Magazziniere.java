@@ -1,3 +1,4 @@
+package Utenti;
 public class Magazziniere extends Utente {
 
 	private static String etichettaM = "magazziniere";

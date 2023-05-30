@@ -1,3 +1,6 @@
+package Ristorante;
+import Prenotazioni.Giorno;
+
 public class Bevanda extends Extra {
 
 	private static String tipoB = "bevanda";

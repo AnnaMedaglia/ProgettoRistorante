@@ -1,3 +1,4 @@
+package Prenotazioni;
 import java.time.LocalDate;
 
 public class Giorno {

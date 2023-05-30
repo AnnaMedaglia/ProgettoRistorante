@@ -1,4 +1,11 @@
+package Ristorante;
 import java.util.HashSet;
+
+import Magazzino.ElementoMagazzino;
+import Magazzino.ListaSpesa;
+import Prenotazioni.Giorno;
+import Prenotazioni.Prenotazione;
+
 import java.util.HashMap;
 
 public class Giornata {

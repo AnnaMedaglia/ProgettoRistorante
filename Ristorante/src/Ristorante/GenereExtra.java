@@ -1,3 +1,6 @@
+package Ristorante;
+import Prenotazioni.Giorno;
+
 public class GenereExtra extends Extra {
 
 	protected static String tipoGE = "genere extra";

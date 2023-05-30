@@ -1,6 +1,14 @@
+package Magazzino;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.PriorityQueue;
+
+import Ristorante.Extra;
+import Ristorante.Giornata;
+import Ristorante.Ingrediente;
+import Ristorante.Merce;
+import Ristorante.Ristorante;
 
 public class RegistroMagazzino {
 
