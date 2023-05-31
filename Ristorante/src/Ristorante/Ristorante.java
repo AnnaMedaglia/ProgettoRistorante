@@ -86,5 +86,12 @@ public class Ristorante {
 		this.ricettario = ricettario;
 	}
 
+	public void aggiungiBevande(Bevanda bevanda) {
+		insiemeB.add(bevanda);
+	}
+	
+	public void aggiungiGenereExtra(GenereExtra genereExtra) {
+		insiemeGE.add(genereExtra);
+	}
 
 }
