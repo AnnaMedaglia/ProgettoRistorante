@@ -2,14 +2,14 @@ package Prenotazioni;
 import java.util.HashMap;
 
 import Ristorante.Piatto;
-import Ristorante.Scelta;
+import Ristorante.Menu;
 
 public class Prenotazione {
 
 	private String cliente;
 	private int numCoperti;
 	private Giorno data;
-	private HashMap<Scelta, Integer> elenco; 
+	private HashMap<Menu, Integer> elenco; 
 
 	public Prenotazione(String cliente, int numCoperti, Giorno data) {
 		this.cliente = cliente;
@@ -42,20 +42,20 @@ public class Prenotazione {
 		this.data = data;
 	}
 
-	public HashMap<Scelta, Integer> getElenco() {
+	public HashMap<Menu, Integer> getElenco() {
 		return elenco;
 	}
 
-	public void setElenco(HashMap<Scelta, Integer> elenco) {
+	public void setElenco(HashMap<Menu, Integer> elenco) {
 		this.elenco = elenco;
 	}
 
-	public void addScelta (Scelta scelta, int numPersone) {
+	public void addScelta (Menu scelta, int numPersone) {
 		elenco.put(scelta, numPersone);
 	}
 
 	//ritorna il numero di Persone (= valore) dato il primo elemento della coppia 
-	public int getNumeroPersone(Scelta ordine) {
+	public int getNumeroPersone(Menu ordine) {
 		return elenco.get(ordine);
 	}
 
@@ -71,7 +71,7 @@ public class Prenotazione {
 	//metodo che servira' per la lista della spesa relativa alla singola prenotazione
 	public HashMap <Piatto, Integer> elencoPiatti () {
 		HashMap<Piatto, Integer> conteggio = new HashMap<>();
-		for (Scelta scelta : elenco.keySet()) {
+		for (Menu scelta : elenco.keySet()) {
 			for (Piatto piatto : scelta.getPiatto()) {
 				conteggio.put(piatto, conteggio.getOrDefault(piatto, 0) + elenco.get(scelta));
 			}

@@ -1,4 +1,6 @@
 package Ristorante;
+
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 
@@ -9,8 +11,8 @@ public class Ristorante {
 	private int numPosti;
 	private double caricoLavoroRistorante; 
 	private TreeSet<Giornata> calendario;
-	private HashSet<GenereExtra> insiemeGE;
-	private HashSet<Bevanda> insiemeB;
+	private HashMap<String, Double> insiemeGE;
+	private HashMap<String, Double> insiemeB;
 	private HashSet<Ricetta> ricettario;
 
 	//costruttore
@@ -20,8 +22,8 @@ public class Ristorante {
 		this.numPosti = numPosti;
 		this.caricoLavoroRistorante = (0.2 * (caricoLavoroPersona * numPosti)) + (caricoLavoroPersona * numPosti);
 		this.calendario = new TreeSet<>();
-		this.insiemeGE = new HashSet<>();
-		this.insiemeB = new HashSet<>();
+		this.insiemeGE = new HashMap<>();
+		this.insiemeB = new HashMap<>();
 		this.ricettario = new HashSet<>();
 	}
 
@@ -61,20 +63,20 @@ public class Ristorante {
 		this.calendario = calendario;
 	}
 
-	public HashSet<GenereExtra> getInsiemeGE() {
+
+	public HashMap<String, Double> getInsiemeGE() {
 		return insiemeGE;
 	}
 
-	public void setInsiemeGE(HashSet<GenereExtra> insiemeGE) {
+	public void setInsiemeGE(HashMap<String, Double> insiemeGE) {
 		this.insiemeGE = insiemeGE;
 	}
 
-
-	public HashSet<Bevanda> getInsiemeB() {
+	public HashMap<String, Double> getInsiemeB() {
 		return insiemeB;
 	}
 
-	public void setInsiemeB(HashSet<Bevanda> insiemeB) {
+	public void setInsiemeB(HashMap<String, Double> insiemeB) {
 		this.insiemeB = insiemeB;
 	}
 
@@ -86,12 +88,26 @@ public class Ristorante {
 		this.ricettario = ricettario;
 	}
 
-	public void aggiungiBevande(Bevanda bevanda) {
-		insiemeB.add(bevanda);
+	public void aggiungiBevanda(String nome, double consumoProCapite) {
+		insiemeB.put(nome, consumoProCapite);
 	}
 	
-	public void aggiungiGenereExtra(GenereExtra genereExtra) {
-		insiemeGE.add(genereExtra);
+	public void rimuoviBevanda(String nome) {
+		if (insiemeB.containsKey(nome)) {
+			insiemeB.remove(nome);
+		}
+		else System.out.println("La bevanda non e' presente nell'insieme");
 	}
-
+	
+	public void aggiungiGenereExtra(String nome, double consumoProCapite) {
+		insiemeGE.put(nome, consumoProCapite);
+	}
+	
+	public void rimuoviGenereExtra(String nome) {
+		if (insiemeGE.containsKey(nome)) {
+			insiemeGE.remove(nome);
+		}
+		else System.out.println("Il genere extra non e' presente nell'insieme");
+	}
+	
 }

@@ -3,16 +3,14 @@ import java.util.HashSet;
 
 public class MenuTematico extends Menu {
 
-	private String tipoMT = "menu alla carta";
+	private static String tipoMT = "menu tematico";
 
 	private String nome;
 	private double caricoLavoroMenuT;
 
 	public MenuTematico(String nome) {
-		super();
-		this.tipo = tipoMT;
+		super(tipoMT);
 		this.nome = nome;
-		this.creaElenco(); //creazione elenco vuoto per i piatti del menu tematico
 	}
 
 	public String getNome() {
@@ -34,7 +32,5 @@ public class MenuTematico extends Menu {
 		};
 		this.caricoLavoroMenuT = temp;
 	} 
-
-
 
 }

@@ -1,12 +1,18 @@
 package Ristorante;
+
+import java.util.TreeSet;
+import Prenotazioni.Giorno;
+
 public class Piatto {
 
 	private String denominazione;
 	private double caricoLavoro;
+	private TreeSet<Giorno> validità;
 
-	public Piatto(String denominazione, double caricoLavoro, Ricetta ricetta) {
+	public Piatto(String denominazione, double caricoLavoro) {
 		this.denominazione = denominazione;
-		this.caricoLavoro = ricetta.getCaricoLavoroPorzione();
+		this.caricoLavoro = caricoLavoro;
+		this.validità = new TreeSet<>();
 	}
 
 	public String getDenominazione() {
@@ -21,5 +27,20 @@ public class Piatto {
 		return caricoLavoro;
 	}
 
+	public void setCaricoLavoro(double caricoLavoro) {
+		this.caricoLavoro = caricoLavoro;
+	}
+
+	public TreeSet<Giorno> getValidità() {
+		return validità;
+	}
+
+	public void setValidità(TreeSet<Giorno> validità) {
+		this.validità = validità;
+	}
+	
+	public void aggiungiGiorno (Giorno giorno) {
+		validità.add(giorno);
+	}
 
 }

@@ -1,10 +1,8 @@
 package Magazzino;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.PriorityQueue;
 
-import Ristorante.Extra;
 import Ristorante.Giornata;
 import Ristorante.Ingrediente;
 import Ristorante.Merce;
@@ -124,12 +122,12 @@ public class RegistroMagazzino {
 
 	public void extraO (Ristorante ristorante, Giornata giornata) {	
 		//creiamo un unico insieme di elementi extra
-		HashSet<Extra> extra = new HashSet<>(ristorante.getInsiemeB());
-		extra.addAll(ristorante.getInsiemeGE());
+		HashMap<String, Double> extra = new HashMap<>(ristorante.getInsiemeB());
+		extra.putAll(ristorante.getInsiemeGE());
 
 		//per ogni elemento dell'insieme preleviamo la merce da portare in sala dal magazzino
-		for (Extra elemento : extra) {
-			togliMerce (elemento.getNome(), elemento.getConsumoProCapite() * giornata.numCopertiPrenotati());
+		for (String elemento : extra.keySet()) {
+			togliMerce (elemento, (extra.get(elemento)) * giornata.numCopertiPrenotati());
 		}
 	}
 

@@ -8,6 +8,10 @@ public class Giorno {
 	public Giorno(LocalDate giorno) {
 		this.giorno = giorno;
 	}
+	
+	public Giorno (int anno, int mese, int giorno) { //aaaa/mm/gg
+		this.giorno = LocalDate.of(anno, mese, giorno);
+	}
 
 	public LocalDate getGiorno() {
 		return giorno;

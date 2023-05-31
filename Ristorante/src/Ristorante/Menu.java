@@ -5,6 +5,13 @@ public abstract class Menu {
 
 	protected String tipo;
 	private HashSet<Piatto> elenco;
+	
+	
+
+	public Menu(String tipo) {
+		this.tipo = tipo;
+		this.elenco =  new HashSet<>();
+	}
 
 	//getPiatto e non getElenco per poter sfruttare l'override 
 	public HashSet<Piatto> getPiatto() { 
@@ -14,9 +21,4 @@ public abstract class Menu {
 	public void setElenco(HashSet<Piatto> elenco) {
 		this.elenco = elenco;
 	}
-
-	public void creaElenco() {
-		this.elenco = new HashSet<>();
-	}
-
 }

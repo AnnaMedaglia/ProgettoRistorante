@@ -1,6 +1,6 @@
 package Ristorante;
+
 import java.util.HashMap;
-import java.util.HashSet;
 
 import Prenotazioni.Giorno;
 import Prenotazioni.Prenotazione;
@@ -29,12 +29,12 @@ public abstract class Extra extends Merce {
 	}
 
 	//questo metodo vale sia per l'insieme delle Bevande, sia per quello dei generi Extra
-	public static HashMap<String, Double> creaListaExtraDaPrenotazione (Prenotazione prenotazione, HashSet<? extends Extra> insieme){
+	public static HashMap<String, Double> creaListaExtraDaPrenotazione (Prenotazione prenotazione, HashMap<String, Double> insieme){
 		HashMap<String, Double> listaExtra = new HashMap<>();		
 		int num = prenotazione.getNumCoperti(); 
 
-		for (Extra extra : insieme) {
-			listaExtra.put(extra.getNome(), num*extra.getConsumoProCapite());
+		for (String extra : insieme.keySet()) {
+			listaExtra.put(extra, num*(insieme.get(extra)));
 		}
 
 		return listaExtra;	
