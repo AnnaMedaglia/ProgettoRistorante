@@ -7,7 +7,6 @@ public abstract class Menu {
 	private HashSet<Piatto> elenco;
 	
 	
-
 	public Menu(String tipo) {
 		this.tipo = tipo;
 		this.elenco =  new HashSet<>();

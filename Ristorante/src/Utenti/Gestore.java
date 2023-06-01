@@ -2,10 +2,10 @@ package Utenti;
 
 import java.util.HashSet;
 
+import Ristorante.Periodo;
 import Ristorante.Piatto;
 import Ristorante.Ricetta;
 import Ristorante.Ristorante;
-import Prenotazioni.Giorno;
 import Util.InputDati;
 
 public class Gestore extends Utente{
@@ -14,7 +14,14 @@ public class Gestore extends Utente{
 
 	public Gestore(String nome) {
 		super(nome, etichettaG);
-		//azioni.put("inizializza", /*this::inizializzaParametri*/);
+		Ristorante ristorante = creaRistorante();
+		azioni.put("Visualizza i parametri del ristorante", () -> visualizzaRistorante(ristorante));
+		azioni.put("Aggiungi bevanda all'insieme delle bevande", () -> aggiungiBevanda(ristorante));
+		azioni.put("Rimuovi bevanda dall'insieme delle bevande", () -> rimuoviBevanda(ristorante));
+		azioni.put("Aggiungi genere extra all'insieme dei generi extra", () -> aggiungiGenereExtra(ristorante));
+		azioni.put("Rimuovi genere extra dall'insieme dei generi extra", () -> rimuoviGenereExtra(ristorante));
+		azioni.put("Crea corrispondenza Piatto - Ricetta", () -> corrispondenzaPiattoRicetta(ristorante));
+		azioni.put("Crea periodo di validita' dei piatti", () -> (HashSet<Piatto> piatti) -> validitaPiatti (piatti) ); //??
 	}
 
 	public Ristorante creaRistorante() {
@@ -75,41 +82,39 @@ public class Gestore extends Utente{
 	public HashSet<Piatto> corrispondenzaPiattoRicetta (Ristorante ristorante) {
 		HashSet<Piatto> piatti = new HashSet<>(); 
 
-		String messaggioValidità = "Inserisci il periodo di validita' del piatto: ";
-
-		String messaggioAnno = "\nInserisci l'anno di validita' del piatto: ";
-		String messaggioMese = "\nInserisci il mese di validita' del piatto: ";
-		String messaggioGiorno = "\nInserisci il giorno di validita' del piatto: ";
-
-		String messaggioPiuGiorni = "\nVuoi inserire altri giorni di validita'? [S/N]";
-
+		String messaggioValidita = "Vuoi gia' inserire il periodo di validita' per ogni piatto? [S/N] ";
 
 		for (Ricetta ricetta : ristorante.getRicettario()) {
 			Piatto piatto = new Piatto (ricetta.getNome(), ricetta.getCaricoLavoroPorzione());
-			boolean rispostaGiorno = false;
-			System.out.println(messaggioValidità);
-			do {
-				int anno = InputDati.leggiInteroConMinimo(messaggioAnno, 2023);
-				int mese = InputDati.leggiIntero(messaggioMese, 1, 12);
-				int giorno = 0;
-				if (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese == 8 || mese == 10|| mese == 12) {
-					giorno = InputDati.leggiIntero(messaggioGiorno, 1, 31);
-				} else if (mese == 4 || mese == 6 || mese == 9 || mese == 11) {
-					giorno = InputDati.leggiIntero(messaggioGiorno, 1, 30);
-				} else {
-					giorno = InputDati.leggiIntero(messaggioGiorno, 1, 29);
-				}
 
-				Giorno giornoValido = new Giorno (anno, mese, giorno);
-				piatto.aggiungiGiorno(giornoValido);
-
-				piatti.add(piatto);
-
-				rispostaGiorno = InputDati.yesOrNo(messaggioPiuGiorni);
+			boolean scelta = InputDati.yesOrNo(messaggioValidita);
+			if (scelta) {
+				validitaPiatto(piatto);
 			}
-			while (rispostaGiorno);
+
+			piatti.add(piatto);
 		}
-		
+
 		return piatti;
 	}
+
+	public void validitaPiatto (Piatto piatto) {
+		String messaggioValidita = "Inserisci il periodo di validita' del piatto: ";
+		System.out.println(messaggioValidita);
+
+		Periodo validita = new Periodo();
+		validita.creaPeriodoValidita();
+		piatto.setValidita(validita);
+	}
+
+	public void validitaPiatti (HashSet<Piatto> piatti) {
+		for (Piatto piatto : piatti) {	
+			validitaPiatto(piatto);
+		}
+	}
+
+	public Ricetta trovaRicetta(Piatto piatto, Ristorante ristorante) throws Exception {
+		return ristorante.getRicetta(piatto);
+	}
+
 }

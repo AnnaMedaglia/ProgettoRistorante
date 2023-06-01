@@ -1,9 +1,16 @@
 package Prenotazioni;
 import java.time.LocalDate;
 
-public class Giorno {
+import Util.InputDati;
+
+public class Giorno implements Comparable<Giorno> {
 
 	private LocalDate giorno;
+	
+	private final static String messaggioAnno = "\nInserisci l'anno: ";
+	private final static String messaggioMese = "\nInserisci il mese: ";
+	private final static String messaggioGiorno = "\nInserisci il giorno: ";
+
 
 	public Giorno(LocalDate giorno) {
 		this.giorno = giorno;
@@ -21,6 +28,27 @@ public class Giorno {
 		this.giorno = giorno;
 	}
 
+	@Override
+    public int compareTo(Giorno altroGiorno) {
+        return this.giorno.compareTo(altroGiorno.getGiorno());
+    }
+	
+	public static Giorno richiestaCreaGiorno() {
+		int anno = InputDati.leggiInteroConMinimo(messaggioAnno, 2023);
+		int mese = InputDati.leggiIntero(messaggioMese, 1, 12);
+		int giorno = 0;
+		if (mese == 1 || mese == 3 || mese == 5 || mese == 7 || mese == 8 || mese == 10|| mese == 12) {
+			giorno = InputDati.leggiIntero(messaggioGiorno, 1, 31);
+		} else if (mese == 4 || mese == 6 || mese == 9 || mese == 11) {
+			giorno = InputDati.leggiIntero(messaggioGiorno, 1, 30);
+		} else {
+			giorno = InputDati.leggiIntero(messaggioGiorno, 1, 29);
+		}
+		
+		return new Giorno (anno, mese, giorno);
+	}
+	
+	
 	public boolean contains (LocalDate data, LocalDate inizio, LocalDate fine) {
 		return (data.isEqual(inizio) || data.isAfter(inizio)) &&
 				(data.isEqual(fine) || data.isBefore(fine));
@@ -31,4 +59,6 @@ public class Giorno {
 		//positivo se giorno scade dopo giorno2, 
 		//0 se sono lo stesso giorno
 	}
+
+	
 }

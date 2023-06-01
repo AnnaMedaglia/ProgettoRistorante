@@ -1,6 +1,7 @@
 package Utenti;
 
 import java.util.HashMap;
+
 import Util.*;
 
 public abstract class Utente implements MenuUtente {
@@ -8,7 +9,7 @@ public abstract class Utente implements MenuUtente {
 	private String nome;
 	private String etichetta;
 	protected HashMap<String, Runnable> azioni;
-	
+  
 	//ci serve per il metodo del menu
 	private String[] azioniPossibili;
 
@@ -45,12 +46,12 @@ public abstract class Utente implements MenuUtente {
 	public void menu() {
         // Mostra il menu all'utente
 		int i=0;
-		azioniPossibili = null;
+		azioniPossibili = new String[azioni.size()];
 		
 		for (String nomeAzione : azioni.keySet()) {
 			i++;
 			System.out.printf("%d: %s", i, nomeAzione);
-			azioniPossibili[i] = nomeAzione;
+			azioniPossibili[i-1] = nomeAzione;
 		}
 		
         // Leggi l'input dell'utente

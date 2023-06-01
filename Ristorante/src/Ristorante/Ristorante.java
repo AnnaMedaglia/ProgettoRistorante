@@ -91,23 +91,32 @@ public class Ristorante {
 	public void aggiungiBevanda(String nome, double consumoProCapite) {
 		insiemeB.put(nome, consumoProCapite);
 	}
-	
+
 	public void rimuoviBevanda(String nome) {
 		if (insiemeB.containsKey(nome)) {
 			insiemeB.remove(nome);
 		}
 		else System.out.println("La bevanda non e' presente nell'insieme");
 	}
-	
+
 	public void aggiungiGenereExtra(String nome, double consumoProCapite) {
 		insiemeGE.put(nome, consumoProCapite);
 	}
-	
+
 	public void rimuoviGenereExtra(String nome) {
 		if (insiemeGE.containsKey(nome)) {
 			insiemeGE.remove(nome);
 		}
 		else System.out.println("Il genere extra non e' presente nell'insieme");
 	}
-	
+
+	public Ricetta getRicetta(Piatto piatto) throws Exception {
+		for (Ricetta ricetta : ricettario) {
+			if (piatto.getDenominazione().equalsIgnoreCase(ricetta.getNome())) {
+				return ricetta;
+			}
+		}
+		throw new Exception("Ricetta non trovata");
+	}
+
 }
