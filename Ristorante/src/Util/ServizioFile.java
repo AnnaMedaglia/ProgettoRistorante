@@ -4,45 +4,55 @@ import java.io.*;
 
 public class ServizioFile
 {
-	private final static String MSG_NO_FILE = "ATTENZIONE: NON TROVO IL FILE ";
-	private final static String MSG_NO_LETTURA = "ATTENZIONE: PROBLEMI CON LA LETTURA DEL FILE ";
-	private final static String MSG_NO_SCRITTURA = "ATTENZIONE: PROBLEMI CON LA SCRITTURA DEL FILE ";
-	private final static String MSG_NO_CHIUSURA ="ATTENZIONE: PROBLEMI CON LA CHIUSURA DEL FILE ";
+	
+	private final static String MSG_SUCCESSO = "Il file è stato creato con successo ";
+	private static final String MSG_ESISTE = "ATTENZIONE: il file esiste già ";
+	private static final String MSG_NO_CREAZIONE = "ATTENZIONE: si è verificato un errore durante la creazione del file ";
+	private final static String MSG_NO_FILE = "ATTENZIONE: non trovo il file ";
+	private final static String MSG_NO_LETTURA = "ATTENZIONE: problemi con la lettura del file ";
+	private final static String MSG_NO_SCRITTURA = "ATTENZIONE: problemi con la scrittura del file ";
+	private final static String MSG_NO_CHIUSURA ="ATTENZIONE: problemi con la chiusura del file ";
 
-	public static Object caricaSingoloOggetto (File f)
-	{
+
+	public static void creaFile(String nomeFile) {
+		try {
+			File file = new File(nomeFile);
+			if (file.createNewFile()) {
+				System.out.println(MSG_SUCCESSO);
+			} else {
+				System.out.println(MSG_ESISTE);
+			}
+		} catch (IOException e) {
+			System.out.println(MSG_NO_CREAZIONE);
+			e.printStackTrace();
+		}
+	}
+
+	public static Object caricaSingoloOggetto (File f){
 		Object letto = null;
 		ObjectInputStream ingresso = null;
 
-		try
-		{
+		try{
 			ingresso = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
 
 			letto = ingresso.readObject();
 
 		}
-		catch (FileNotFoundException excNotFound)
-		{
+		catch (FileNotFoundException excNotFound){
 			System.out.println(MSG_NO_FILE + f.getName() );
 		}
-		catch (IOException excLettura)
-		{
+		catch (IOException excLettura) {
 			System.out.println(MSG_NO_LETTURA + f.getName() );
 		}
-		catch (ClassNotFoundException excLettura)
-		{
+		catch (ClassNotFoundException excLettura) {
 			System.out.println(MSG_NO_LETTURA + f.getName() );
 		}
-		finally
-		{
-			if (ingresso != null)
-			{
-				try 
-				{
+		finally {
+			if (ingresso != null) {
+				try {
 					ingresso.close();
 				}
-				catch (IOException excChiusura)
-				{
+				catch (IOException excChiusura) {
 					System.out.println(MSG_NO_CHIUSURA + f.getName() );
 				}
 			}
@@ -53,32 +63,25 @@ public class ServizioFile
 	} // metodo caricaSingoloOggetto
 
 
-	public static void salvaSingoloOggetto (File f, Object daSalvare)
-	{
+	public static void salvaSingoloOggetto (File f, Object daSalvare) {
 		ObjectOutputStream uscita = null;
 
-		try
-		{
+		try {
 			uscita = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
 
 			uscita.writeObject(daSalvare);
 
 		}
-		catch (IOException excScrittura)
-		{
+		catch (IOException excScrittura) {
 			System.out.println(MSG_NO_SCRITTURA + f.getName() );
 		}
 
-		finally
-		{
-			if (uscita != null)
-			{
-				try 
-				{
+		finally {
+			if (uscita != null) {
+				try {
 					uscita.close();
 				}
-				catch (IOException excChiusura)
-				{
+				catch (IOException excChiusura) {
 					System.out.println(MSG_NO_CHIUSURA + f.getName() );
 				}
 			}

@@ -49,16 +49,15 @@ public class Ricetta {
 	}
 
 	//metodo che associa un piatto a una ricetta
-	public static Ricetta trovaRicetta(Piatto piatto, HashSet<Ricetta> ricettario) {
+	public static Ricetta trovaRicetta(String piatto, HashSet<Ricetta> ricettario) {
 		Ricetta trovata;
-		String nome = piatto.getDenominazione();
+		String nome = piatto;
 		for (Ricetta ric : ricettario) {
 			if (ric.getNome()==nome) {
 				trovata = ric;
 				return trovata;
 			}
 		}
-		System.out.println("Non esiste una ricetta con questo nome");
 		return null;
 	}
 

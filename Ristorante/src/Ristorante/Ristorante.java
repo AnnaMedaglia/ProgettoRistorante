@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.TreeSet;
 
 import Util.InputDati;
+import Util.ServizioFile;
 
 public class Ristorante {
 
@@ -28,18 +29,21 @@ public class Ristorante {
 		this.insiemeGE = new HashMap<>();
 		this.insiemeB = new HashMap<>();
 		this.ricettario = new HashSet<>();
+		this.piatti = new HashSet<>();
+	}
+	
+	public Ristorante(String nome) {
+		this.nome = nome;
 	}
 	
 	public static Ristorante creaRistorante() {
 		String messaggioNome = "Inserisci il nome del ristorante: ";
-		String messaggioCarico = "Inserisci il carico di lavoro per persona: ";
-		String messaggioNumPosti = "Inserisci il numero di posti a sedere disponibili del ristorante: ";
-
+	
 		String nome = InputDati.leggiStringaNonVuota(messaggioNome);
-		int caricoLavoroPersona = InputDati.leggiInteroNonNegativo(messaggioCarico);
-		int numPosti = InputDati.leggiInteroPositivo(messaggioNumPosti);
-
-		return new Ristorante(nome, caricoLavoroPersona, numPosti);
+		
+		ServizioFile.creaFile(nome);
+		
+		return new Ristorante(nome);
 	}
 	
 	public String getNome() {
@@ -102,7 +106,32 @@ public class Ristorante {
 	public void setRicettario(HashSet<Ricetta> ricettario) {
 		this.ricettario = ricettario;
 	}
+	
+	public void aggiungiRicetta(Ricetta ricetta) {
+		this.ricettario.add(ricetta);
+	}
+	
+	public Ricetta getRicetta(Piatto piatto) throws Exception {
+		for (Ricetta ricetta : ricettario) {
+			if (piatto.getDenominazione().equalsIgnoreCase(ricetta.getNome())) {
+				return ricetta;
+			}
+		}
+		throw new Exception("Ricetta non trovata");
+	}
 
+	public HashSet<Piatto> getPiatti() {
+		return piatti;
+	}
+
+	public void setPiatti(HashSet<Piatto> piatti) {
+		this.piatti = piatti;
+	}
+
+	public void aggiungiPiatto(Piatto piatto) {
+		this.piatti.add(piatto);
+	}
+	
 	public void aggiungiBevanda(String nome, double consumoProCapite) {
 		insiemeB.put(nome, consumoProCapite);
 	}
@@ -125,13 +154,5 @@ public class Ristorante {
 		else System.out.println("Il genere extra non e' presente nell'insieme");
 	}
 
-	public Ricetta getRicetta(Piatto piatto) throws Exception {
-		for (Ricetta ricetta : ricettario) {
-			if (piatto.getDenominazione().equalsIgnoreCase(ricetta.getNome())) {
-				return ricetta;
-			}
-		}
-		throw new Exception("Ricetta non trovata");
-	}
-
+	
 }

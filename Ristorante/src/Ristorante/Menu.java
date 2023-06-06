@@ -3,7 +3,7 @@ import java.util.HashSet;
 
 public abstract class Menu {
 
-	protected String tipo;
+	private String tipo;
 	private HashSet<Piatto> elenco;
 	
 	
@@ -20,4 +20,14 @@ public abstract class Menu {
 	public void setElenco(HashSet<Piatto> elenco) {
 		this.elenco = elenco;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
+	
 }

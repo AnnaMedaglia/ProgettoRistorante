@@ -6,8 +6,8 @@ import Prenotazioni.Giorno;
 public abstract class Merce {
 
 	private String nome;
-	protected String tipo;
-	protected String unitaMisura;
+	private String tipo;
+	private String unitaMisura;
 	private Giorno scadenza;
 	private boolean qualita = true;
 

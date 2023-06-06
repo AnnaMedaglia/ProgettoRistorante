@@ -8,7 +8,7 @@ import Util.InputDati;
 public class Periodo {
 	private TreeSet<Giorno> periodoValidita;
 	
-	private final static String messaggioPiuGiorni = "\nVuoi inserire altri giorni di validita'? [S/N]";
+	private final static String MSG_PIU_GIORNI = "\nVuoi inserire altri giorni di validita'? [S/N]";
 
 	public Periodo () {
 		this.periodoValidita = new TreeSet<>();
@@ -29,7 +29,23 @@ public class Periodo {
 			Giorno giorno = Giorno.richiestaCreaGiorno();
 			periodoValidita.add(giorno);
 			
-			rispostaGiorno = InputDati.yesOrNo(messaggioPiuGiorni);
+			rispostaGiorno = InputDati.yesOrNo(MSG_PIU_GIORNI);
 		} while(rispostaGiorno);
 	}
+
+	@Override
+	public String toString() {
+		String daTornare = "Periodo: [";
+		
+		for (Giorno giorno : periodoValidita) {
+			daTornare += giorno.getGiorno();
+			daTornare += "\n";
+		}
+		
+		daTornare += "]";
+		
+		return daTornare;
+	}
+	
+	
 }
