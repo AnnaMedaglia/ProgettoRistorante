@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 
+import Util.InputDati;
+
 public class Ristorante {
 
 	private String nome;
@@ -14,6 +16,7 @@ public class Ristorante {
 	private HashMap<String, Double> insiemeGE;
 	private HashMap<String, Double> insiemeB;
 	private HashSet<Ricetta> ricettario;
+	private HashSet<Piatto> piatti;
 
 	//costruttore
 	public Ristorante(String nome, int caricoLavoroPersona, int numPosti) {
@@ -26,7 +29,19 @@ public class Ristorante {
 		this.insiemeB = new HashMap<>();
 		this.ricettario = new HashSet<>();
 	}
+	
+	public static Ristorante creaRistorante() {
+		String messaggioNome = "Inserisci il nome del ristorante: ";
+		String messaggioCarico = "Inserisci il carico di lavoro per persona: ";
+		String messaggioNumPosti = "Inserisci il numero di posti a sedere disponibili del ristorante: ";
 
+		String nome = InputDati.leggiStringaNonVuota(messaggioNome);
+		int caricoLavoroPersona = InputDati.leggiInteroNonNegativo(messaggioCarico);
+		int numPosti = InputDati.leggiInteroPositivo(messaggioNumPosti);
+
+		return new Ristorante(nome, caricoLavoroPersona, numPosti);
+	}
+	
 	public String getNome() {
 		return nome;
 	}

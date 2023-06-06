@@ -11,29 +11,13 @@ import Util.InputDati;
 public class Gestore extends Utente{
 
 	private static String etichettaG = "gestore";
+	private static String[] voci = {"Visualizza i parametri del ristorante","Aggiungi bevanda all'insieme delle bevande", 
+			"Rimuovi bevanda dall'insieme delle bevande", "Aggiungi genere extra all'insieme dei generi extra",
+			"Rimuovi genere extra dall'insieme dei generi extra", "Crea corrispondenza Piatto - Ricetta",
+	"Crea periodo di validita' dei piatti"};
 
 	public Gestore(String nome) {
-		super(nome, etichettaG);
-		Ristorante ristorante = creaRistorante();
-		azioni.put("Visualizza i parametri del ristorante", () -> visualizzaRistorante(ristorante));
-		azioni.put("Aggiungi bevanda all'insieme delle bevande", () -> aggiungiBevanda(ristorante));
-		azioni.put("Rimuovi bevanda dall'insieme delle bevande", () -> rimuoviBevanda(ristorante));
-		azioni.put("Aggiungi genere extra all'insieme dei generi extra", () -> aggiungiGenereExtra(ristorante));
-		azioni.put("Rimuovi genere extra dall'insieme dei generi extra", () -> rimuoviGenereExtra(ristorante));
-		azioni.put("Crea corrispondenza Piatto - Ricetta", () -> corrispondenzaPiattoRicetta(ristorante));
-		azioni.put("Crea periodo di validita' dei piatti", () -> (HashSet<Piatto> piatti) -> validitaPiatti (piatti) ); //??
-	}
-
-	public Ristorante creaRistorante() {
-		String messaggioNome = "Inserisci il nome del ristorante: ";
-		String messaggioCarico = "Inserisci il carico di lavoro per persona: ";
-		String messaggioNumPosti = "Inserisci il numero di posti a sedere disponibili del ristorante: ";
-
-		String nome = InputDati.leggiStringaNonVuota(messaggioNome);
-		int caricoLavoroPersona = InputDati.leggiInteroNonNegativo(messaggioCarico);
-		int numPosti = InputDati.leggiInteroPositivo(messaggioNumPosti);
-
-		return new Ristorante(nome, caricoLavoroPersona, numPosti);
+		super(nome, etichettaG, voci);
 	}
 
 	public void visualizzaRistorante(Ristorante ristorante) {
@@ -115,6 +99,42 @@ public class Gestore extends Utente{
 
 	public Ricetta trovaRicetta(Piatto piatto, Ristorante ristorante) throws Exception {
 		return ristorante.getRicetta(piatto);
+	}
+
+	@Override
+	public void eseguiMetodi(Ristorante ristorante, int scelta) {
+		switch (scelta) {
+		case 1: 
+			visualizzaRistorante(ristorante);
+			break;
+		case 2: 
+			aggiungiBevanda(ristorante);
+			break;
+		case 3: 
+			rimuoviBevanda(ristorante);
+			break;
+		case 4: 
+			aggiungiGenereExtra(ristorante);
+			break;
+		case 5: 
+			rimuoviGenereExtra(ristorante);
+			break;
+		case 6: 
+			corrispondenzaPiattoRicetta(ristorante);
+			break;
+		case 7:
+			validitaPiatti();
+			break;
+		
+		}
+		
+
+	}
+
+	@Override
+	public void menu() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
