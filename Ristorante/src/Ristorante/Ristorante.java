@@ -111,13 +111,17 @@ public class Ristorante {
 		this.ricettario.add(ricetta);
 	}
 	
-	public Ricetta getRicetta(Piatto piatto) throws Exception {
+	public Ricetta getRicetta(Piatto piatto) throws NullPointerException {
 		for (Ricetta ricetta : ricettario) {
 			if (piatto.getDenominazione().equalsIgnoreCase(ricetta.getNome())) {
 				return ricetta;
 			}
 		}
-		throw new Exception("Ricetta non trovata");
+		throw new NullPointerException("Ricetta non trovata");
+	}
+	
+	public boolean haiRicetta(String piatto) {
+		
 	}
 
 	public HashSet<Piatto> getPiatti() {

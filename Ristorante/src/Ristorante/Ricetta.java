@@ -31,7 +31,11 @@ public class Ricetta {
 	public void setIngredienti(HashMap<String, Double> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
-
+	
+	public void aggiungiIngrediente(String nome, double dose) {
+		this.ingredienti.put(nome, dose);
+	}
+	
 	public int getNumPorzioni() {
 		return numPorzioni;
 	}
@@ -49,16 +53,15 @@ public class Ricetta {
 	}
 
 	//metodo che associa un piatto a una ricetta
-	public static Ricetta trovaRicetta(String piatto, HashSet<Ricetta> ricettario) {
-		Ricetta trovata;
-		String nome = piatto;
+	public static Ricetta trovaRicetta(String piatto, HashSet<Ricetta> ricettario) throws NullPointerException {
 		for (Ricetta ric : ricettario) {
-			if (ric.getNome()==nome) {
-				trovata = ric;
-				return trovata;
+			if (ric.getNome().equals(piatto)) {
+				return ric;
 			}
 		}
-		return null;
+		// Se la ricetta non viene trovata si lancia un'eccezione
+		throw new NullPointerException("Ricetta non trovata per il piatto: " + piatto);
 	}
+
 
 }

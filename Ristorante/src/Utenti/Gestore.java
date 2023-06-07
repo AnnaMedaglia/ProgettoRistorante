@@ -115,19 +115,20 @@ public class Gestore extends Utente{
 		}
 	}
 
-	public void trovaRicetta(Ristorante ristorante){
+	public void verificaEsistenzaRicetta(Ristorante ristorante){
 		String msgNome = "Inserisci il nome del piatto da cercare: ";
 		String msgSiRicetta = "Esiste una corrispondenza tra il piatto cercato e una ricetta";
 		String msgNoRicetta = "Non esiste una ricetta con questo nome";
 
 		String nome = InputDati.leggiStringaNonVuota(msgNome);
 
-		Ricetta trovata = Ricetta.trovaRicetta(nome, ristorante.getRicettario());
-
-		if (trovata != null) {
+		try {
+			Ricetta.trovaRicetta(nome, ristorante.getRicettario());
 			System.out.println(msgSiRicetta);
+		} catch (NullPointerException e) {
+			System.out.println(msgNoRicetta);
+			e.printStackTrace();
 		}
-		else System.out.println(msgNoRicetta);
 	}
 
 
@@ -135,6 +136,67 @@ public class Gestore extends Utente{
 		for (Piatto piatto : piatti) {
 			System.out.printf("nome piatto: %s\tperiodo di validita': %s\n", piatto.getDenominazione(), piatto.getValidita().toString());
 		}
+	}
+
+	private void creaRicetta(Ristorante ristorante) {
+		String msgNome = "Inserisci il nome della ricetta da creare: ";
+		String msgNumPorzioni = "Inserisci il numero delle porzioni della ricetta da creare: ";
+		String msgCaricoLavoro = "Inserisci il carico di lavoro per persona della ricetta da creare: ";
+
+		String msgScelta = "Vuoi inserire altri ingredienti?[S/N] ";
+
+		String nomeRicetta = InputDati.leggiStringaNonVuota(msgNome);
+		int numPorzioni = InputDati.leggiInteroPositivo(msgNumPorzioni);
+		double caricoLavoroPorzione = InputDati.leggiDoubleConMinimo(msgCaricoLavoro, 0);
+
+		Ricetta nuova = new Ricetta(nomeRicetta, numPorzioni, caricoLavoroPorzione);
+		boolean scelta = true;
+		do {
+			aggiungiIngredienti(nuova);
+			scelta = InputDati.yesOrNo(msgScelta);
+		} while (scelta);
+
+	}
+
+	private void aggiungiIngredienti(Ricetta ricetta) {
+		String msgNome = "Inserisci il nome dell'ingrediente da aggiungere: ";
+		String msgDose = "Inserisci la dose dell'ingrediente da aggiungere: ";
+
+		String nomeIngrediente = InputDati.leggiStringaNonVuota(msgNome);
+		double doseIngrediente = InputDati.leggiDoubleConMinimo(msgDose, 0);
+
+		ricetta.aggiungiIngrediente(nomeIngrediente, doseIngrediente);		
+	}
+
+	private void visualizzaRicettario(Ristorante ristorante) {
+		int i = 1;
+		for (Ricetta ric : ristorante.getRicettario()) {
+			System.out.printf("%d: %s\n", i, ric.getNome());
+			i++;
+		}
+	}
+
+	private void visualizzaRicetta(Ristorante ristorante) {
+		String msgRichiestaRicetta = "Inserisci il nome della ricetta da visualizzare: ";
+
+		String msgNoRicetta = "Non esiste una ricetta con questo nome";
+
+		visualizzaRicettario(ristorante);
+
+		String ricettaScelta = InputDati.leggiStringaNonVuota(msgRichiestaRicetta);
+		boolean trovata = true;
+		do {
+			Ricetta ricettaTrovata = Ricetta.trovaRicetta(ricettaScelta, ristorante.getRicettario());
+			if (ricettaTrovata != null) {
+				//ritornare la ricetta
+				ricettaTrovata.toString();
+				trovata = false;
+			} else {
+				//la ricetta non è nel ricettario
+				System.out.println(msgNoRicetta);
+			}
+		} while (trovata);
+
 	}
 
 	@Override
@@ -174,23 +236,30 @@ public class Gestore extends Utente{
 			visualizzaPiatti(ristorante.getPiatti());
 			break;
 		case 12:
-			trovaRicetta(ristorante);
+			verificaEsistenzaRicetta(ristorante);
 			break;
 		case 13: 
 			creaRicetta(ristorante);
 			break;
 		case 14:
-			visualizzaRicette(ristorante);
+			visualizzaRicettario(ristorante);
 			break;
-		case 15:
+		case 15: 
+			visualizzaRicetta(ristorante);
+			break;
+/*		case 16:
 			creaMenuTematico(ristorante); //in ristorante abbiamo calendario, dove abbiamo giornate, aggiungiamo i menu alle rispettive giornate
 			break;
-		case 16:
+		case 17:
 			visualizzaMenuTematico(ristorante); //dato un giorno chiesto nel metodo stesso
-		}
+*/		}
 
 
 	}
+
+
+
+
 
 
 
