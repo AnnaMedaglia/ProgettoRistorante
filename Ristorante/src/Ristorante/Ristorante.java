@@ -119,10 +119,6 @@ public class Ristorante {
 		}
 		throw new NullPointerException("Ricetta non trovata");
 	}
-	
-	public boolean haiRicetta(String piatto) {
-		
-	}
 
 	public HashSet<Piatto> getPiatti() {
 		return piatti;
