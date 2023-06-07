@@ -23,14 +23,14 @@ public class Gestore extends Utente{
 	public void inizializzaRistorante(Ristorante ristorante) {
 		String msgCarico = "Inserisci il carico di lavoro per persona: ";
 		String msgNumPosti = "Inserisci il numero di posti a sedere disponibili del ristorante: ";
-		
+
 		int caricoLavoroPersona = InputDati.leggiInteroNonNegativo(msgCarico);
 		int numPosti = InputDati.leggiInteroPositivo(msgNumPosti);
-		
+
 		ristorante.setCaricoLavoroPersona(caricoLavoroPersona);
 		ristorante.setNumPosti(numPosti);
 	}
-	
+
 	public void visualizzaRistorante(Ristorante ristorante) {
 		System.out.printf("Nome del ristorante: %s\n", ristorante.getNome());
 		System.out.printf("Carico di lavoro per persona: %d\n", ristorante.getCaricoLavoroPersona());
@@ -55,7 +55,7 @@ public class Gestore extends Utente{
 
 		ristorante.rimuoviBevanda(nome);
 	}
-	
+
 	private void visualizzaInsiemeBevande(Ristorante ristorante) {
 		for (String elemento : ristorante.getInsiemeB().keySet()) {
 			System.out.printf("bevanda: %s\tconsumo pro capite: %f.2\n", elemento, ristorante.getInsiemeB().get(elemento));
@@ -79,7 +79,7 @@ public class Gestore extends Utente{
 
 		ristorante.rimuoviGenereExtra(nome);
 	}
-	
+
 	private void visualizzaInsiemeGeneriExtra(Ristorante ristorante) {
 		for (String elemento : ristorante.getInsiemeGE().keySet()) {
 			System.out.printf("genere extra: %s\tconsumo pro capite: %f.2\n", elemento, ristorante.getInsiemeGE().get(elemento));
@@ -119,18 +119,18 @@ public class Gestore extends Utente{
 		String msgNome = "Inserisci il nome del piatto da cercare: ";
 		String msgSiRicetta = "Esiste una corrispondenza tra il piatto cercato e una ricetta";
 		String msgNoRicetta = "Non esiste una ricetta con questo nome";
-		
+
 		String nome = InputDati.leggiStringaNonVuota(msgNome);
-		
+
 		Ricetta trovata = Ricetta.trovaRicetta(nome, ristorante.getRicettario());
-		
+
 		if (trovata != null) {
 			System.out.println(msgSiRicetta);
 		}
 		else System.out.println(msgNoRicetta);
 	}
-	
-	
+
+
 	private void visualizzaPiatti(HashSet<Piatto> piatti) {
 		for (Piatto piatto : piatti) {
 			System.out.printf("nome piatto: %s\tperiodo di validita': %s\n", piatto.getDenominazione(), piatto.getValidita().toString());
@@ -188,11 +188,11 @@ public class Gestore extends Utente{
 		case 16:
 			visualizzaMenuTematico(ristorante); //dato un giorno chiesto nel metodo stesso
 		}
-		
+
 
 	}
 
-	
-	
+
+
 
 }
