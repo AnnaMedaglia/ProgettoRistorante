@@ -3,17 +3,16 @@ import java.util.HashSet;
 
 public abstract class Menu {
 
-	private String tipo;
 	private HashSet<Piatto> elenco;
+	private Periodo validita;
 	
 	
-	public Menu(String tipo) {
-		this.tipo = tipo;
+	public Menu(Periodo validita) {
 		this.elenco =  new HashSet<>();
+		this.validita = validita;
 	}
 
-	//getPiatto e non getElenco per poter sfruttare l'override 
-	public HashSet<Piatto> getPiatto() { 
+	public HashSet<Piatto> getElenco() { 
 		return elenco;
 	}
 
@@ -21,13 +20,16 @@ public abstract class Menu {
 		this.elenco = elenco;
 	}
 
-	public String getTipo() {
-		return tipo;
+
+	public Periodo getValidita() {
+		return validita;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setValidita(Periodo validita) {
+		this.validita = validita;
 	}
 	
-	
+	public void aggiungiPiatto(Piatto piatto) {
+		this.elenco.add(piatto);
+	}
 }

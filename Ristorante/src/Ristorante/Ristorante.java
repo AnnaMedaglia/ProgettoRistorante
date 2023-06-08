@@ -18,6 +18,7 @@ public class Ristorante {
 	private HashMap<String, Double> insiemeB;
 	private HashSet<Ricetta> ricettario;
 	private HashSet<Piatto> piatti;
+	private HashSet<MenuTematico> menuTematici;
 
 	//costruttore
 	public Ristorante(String nome, int caricoLavoroPersona, int numPosti) {
@@ -30,22 +31,23 @@ public class Ristorante {
 		this.insiemeB = new HashMap<>();
 		this.ricettario = new HashSet<>();
 		this.piatti = new HashSet<>();
+		this.menuTematici = new HashSet<>();
 	}
-	
+
 	public Ristorante(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public static Ristorante creaRistorante() {
 		String messaggioNome = "Inserisci il nome del ristorante: ";
-	
+
 		String nome = InputDati.leggiStringaNonVuota(messaggioNome);
-		
+
 		ServizioFile.creaFile(nome);
-		
+
 		return new Ristorante(nome);
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -91,6 +93,17 @@ public class Ristorante {
 		this.insiemeGE = insiemeGE;
 	}
 
+	public void aggiungiGenereExtra(String nome, double consumoProCapite) {
+		insiemeGE.put(nome, consumoProCapite);
+	}
+
+	public void rimuoviGenereExtra(String nome) {
+		if (insiemeGE.containsKey(nome)) {
+			insiemeGE.remove(nome);
+		}
+		else System.out.println("Il genere extra non e' presente nell'insieme");
+	}
+
 	public HashMap<String, Double> getInsiemeB() {
 		return insiemeB;
 	}
@@ -99,6 +112,16 @@ public class Ristorante {
 		this.insiemeB = insiemeB;
 	}
 
+	public void aggiungiBevanda(String nome, double consumoProCapite) {
+		insiemeB.put(nome, consumoProCapite);
+	}
+
+	public void rimuoviBevanda(String nome) {
+		if (insiemeB.containsKey(nome)) {
+			insiemeB.remove(nome);
+		}
+		else System.out.println("La bevanda non e' presente nell'insieme");
+	}
 	public HashSet<Ricetta> getRicettario() {
 		return ricettario;
 	}
@@ -106,18 +129,18 @@ public class Ristorante {
 	public void setRicettario(HashSet<Ricetta> ricettario) {
 		this.ricettario = ricettario;
 	}
-	
+
 	public void aggiungiRicetta(Ricetta ricetta) {
 		this.ricettario.add(ricetta);
 	}
-	
+
 	public Ricetta getRicetta(Piatto piatto) throws NullPointerException {
 		for (Ricetta ricetta : ricettario) {
 			if (piatto.getDenominazione().equalsIgnoreCase(ricetta.getNome())) {
 				return ricetta;
 			}
 		}
-		throw new NullPointerException("Ricetta non trovata");
+		throw new NullPointerException();
 	}
 
 	public HashSet<Piatto> getPiatti() {
@@ -131,28 +154,17 @@ public class Ristorante {
 	public void aggiungiPiatto(Piatto piatto) {
 		this.piatti.add(piatto);
 	}
+
+	public HashSet<MenuTematico> getMenuTematici() {
+		return menuTematici;
+	}
+
+	public void setMenuTematici(HashSet<MenuTematico> menuTematici) {
+		this.menuTematici = menuTematici;
+	}
 	
-	public void aggiungiBevanda(String nome, double consumoProCapite) {
-		insiemeB.put(nome, consumoProCapite);
+	public void aggiungiMenuTematico (MenuTematico menu) {
+		this.menuTematici.add(menu);
 	}
 
-	public void rimuoviBevanda(String nome) {
-		if (insiemeB.containsKey(nome)) {
-			insiemeB.remove(nome);
-		}
-		else System.out.println("La bevanda non e' presente nell'insieme");
-	}
-
-	public void aggiungiGenereExtra(String nome, double consumoProCapite) {
-		insiemeGE.put(nome, consumoProCapite);
-	}
-
-	public void rimuoviGenereExtra(String nome) {
-		if (insiemeGE.containsKey(nome)) {
-			insiemeGE.remove(nome);
-		}
-		else System.out.println("Il genere extra non e' presente nell'insieme");
-	}
-
-	
 }

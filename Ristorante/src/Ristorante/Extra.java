@@ -10,13 +10,13 @@ public abstract class Extra extends Merce {
 	private double consumoProCapite; 
 
 	//costruttore per inizializzare gli attributi
-	public Extra(String nome, String tipo, String unitaMisura, double consumoProCapite) {
-		super (nome, tipo, unitaMisura);
+	public Extra(String nome, String unitaMisura, double consumoProCapite) {
+		super (nome,unitaMisura);
 		this.consumoProCapite = consumoProCapite;
 	}
 
-	public Extra(String nome, String tipo, String unitaMisura, Giorno scadenza, double consumoProCapite) {
-		super (nome, tipo, unitaMisura, scadenza);
+	public Extra(String nome, String unitaMisura, Giorno scadenza, double consumoProCapite) {
+		super (nome, unitaMisura, scadenza);
 		this.consumoProCapite = consumoProCapite;
 	}
 

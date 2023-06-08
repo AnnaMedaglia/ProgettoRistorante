@@ -7,16 +7,15 @@ import Prenotazioni.Prenotazione;
 
 public class Ingrediente extends Merce {
 
-	private static String tipoI = "ingrediente";
 	private double dose; 
 
 	public Ingrediente(String nome, String unitaMisura, double dose){
-		super(nome, tipoI, unitaMisura);
+		super(nome, unitaMisura);
 		this.dose = dose;
 	}
 
 	public Ingrediente (String nome, Giorno scadenza, double dose) {
-		super(nome, tipoI, scadenza);
+		super(nome, scadenza);
 		this.dose = dose;
 	}
 
@@ -26,14 +25,6 @@ public class Ingrediente extends Merce {
 
 	public void setDose(double dose) {
 		this.dose = dose;
-	}
-
-	public static String getTipoI() {
-		return tipoI;
-	}
-
-	public static void setTipoI(String tipoI) {
-		Ingrediente.tipoI = tipoI;
 	}
 
 	//servira' per la lista della spesa

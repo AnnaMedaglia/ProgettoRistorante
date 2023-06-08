@@ -89,7 +89,7 @@ public class RegistroMagazzino {
 
 	//metodo che ritorna un hashmap di stringhe relative alle merci da togliere dal magazzino (per portarle nel ristorante) 
 	//e le rispettive quantità
-	public HashMap<String, Double> solo1Tipo(ListaSpesa listaSpesa, String tipo) {
+	public HashMap<String, Double> solo1Tipo(ListaSpesa listaSpesa, Class<? extends Merce> tipoMerce) {
 		//inizializiamo una mappa che contenga solo gli ingredienti della lista della spesa
 		HashMap<String, Double> solo1Tipo = new HashMap<>();
 		//per ogni elemento nella lista della spesa
@@ -98,7 +98,7 @@ public class RegistroMagazzino {
 			PriorityQueue<ElementoMagazzino> codaMerce = registro.get(nomeMerce);
 			Merce trovata = codaMerce.peek().getMerce();
 			//se la merce trovata e' del tipo passato
-			if (trovata.getTipo() == tipo) {
+			if (trovata.getClass().equals(tipoMerce)) {
 				//salviamo la quantita'� dalla lista della spesa
 				double quantita = listaSpesa.getLista().get(nomeMerce);
 				solo1Tipo.put(nomeMerce, quantita);
@@ -111,7 +111,7 @@ public class RegistroMagazzino {
 		//in cucina vanno portati gli ingredienti della lista della spesa relativi a quel giorno
 		ListaSpesa listaSpesa = giornata.getDaComprare();
 
-		HashMap<String, Double> soloIngredienti = solo1Tipo(listaSpesa, Ingrediente.getTipoI());
+		HashMap<String, Double> soloIngredienti = solo1Tipo(listaSpesa, Ingrediente.class);
 
 		//per ogni elemento di soloIngredienti applichi togli le merci dal magazzino
 		for (String nomeIngrediente : soloIngredienti.keySet()) {

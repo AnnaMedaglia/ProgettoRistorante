@@ -6,31 +6,27 @@ import Prenotazioni.Giorno;
 public abstract class Merce {
 
 	private String nome;
-	private String tipo;
 	private String unitaMisura;
 	private Giorno scadenza;
 	private boolean qualita = true;
 
 	//creiamo un costruttore per inizializzare alcuni gli attributi → l'unità di misura andra' settata con il set
-	public Merce(String nome, String tipo, Giorno scadenza) {
+	public Merce(String nome, Giorno scadenza) {
 		this.nome = nome;
-		this.tipo = tipo;
 		this.scadenza = scadenza;
 		this.qualita = true;
 	}
 
 	//creiamo un costruttore per inizializzare alcuni gli attributi
-	public Merce(String nome, String tipo, String unitaMisura) {
+	public Merce(String nome, String unitaMisura) {
 		this.nome = nome;
-		this.tipo = tipo;
 		this.unitaMisura = unitaMisura;
 		this.qualita = true;
 	}
 
 	//creiamo un costruttore per inizializzare tutti gli attributi
-	public Merce(String nome, String tipo, String unitaMisura, Giorno scadenza) {
+	public Merce(String nome, String unitaMisura, Giorno scadenza) {
 		this.nome = nome;
-		this.tipo = tipo;
 		this.unitaMisura = unitaMisura;
 		this.scadenza = scadenza;
 		this.qualita = true;
@@ -42,14 +38,6 @@ public abstract class Merce {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
 	}
 
 	public String getUnitaMisura() {
@@ -109,4 +97,5 @@ public abstract class Merce {
 		}
 		return qualita;
 	}
+	
 }

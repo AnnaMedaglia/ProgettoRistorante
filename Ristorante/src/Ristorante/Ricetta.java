@@ -2,6 +2,8 @@ package Ristorante;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import Util.Formattazione;
+
 public class Ricetta {
 
 	private String nome;
@@ -60,7 +62,17 @@ public class Ricetta {
 			}
 		}
 		// Se la ricetta non viene trovata si lancia un'eccezione
-		throw new NullPointerException("Ricetta non trovata per il piatto: " + piatto);
+		throw new NullPointerException();
+	}
+
+	@Override
+	public String toString() {
+		String descrizione = "Ricetta: "+ nome + "\nNumero di porzioni previste: " + numPorzioni + "\nIngredienti:\n";
+		for (String nome : ingredienti.keySet()) {
+			descrizione += "- " + nome + ", dose: " + Formattazione.ritornaDoubleFormattato(ingredienti.get(nome)) + "\n";
+		}
+		descrizione += "Carico di lavoro per porzione: " + Formattazione.ritornaDoubleFormattato(caricoLavoroPorzione) + "\n";
+		return descrizione;
 	}
 
 

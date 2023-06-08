@@ -16,7 +16,7 @@ public class ServizioFile
 
 	public static void creaFile(String nomeFile) {
 		try {
-			File file = new File(nomeFile);
+			File file = new File(nomeFile+".txt");
 			if (file.createNewFile()) {
 				System.out.println(MSG_SUCCESSO);
 			} else {

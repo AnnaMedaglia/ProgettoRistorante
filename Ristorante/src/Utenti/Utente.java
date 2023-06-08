@@ -47,14 +47,7 @@ public abstract class Utente implements MenuUtente {
 	public void menu(Ristorante ristorante) {
 		int scelta = menu.scegli();
         eseguiMetodi(ristorante, scelta);
-/*		// Esegui l'azione corrispondente
-        String sceltaUtente = azioniPossibili[interoScelto];
-        if (azioni.containsKey(sceltaUtente)) {
-            azioni.get(sceltaUtente).run();
-        } else {
-            System.out.println("Azione non valida!");
-        }
- */   }
+   }
 
 	public abstract void eseguiMetodi(Ristorante ristorante, int scelta); 
 }

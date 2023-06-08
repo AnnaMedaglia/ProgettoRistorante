@@ -72,7 +72,7 @@ public class Prenotazione {
 	public HashMap <Piatto, Integer> elencoPiatti () {
 		HashMap<Piatto, Integer> conteggio = new HashMap<>();
 		for (Menu scelta : elenco.keySet()) {
-			for (Piatto piatto : scelta.getPiatto()) {
+			for (Piatto piatto : scelta.getElenco()) {
 				conteggio.put(piatto, conteggio.getOrDefault(piatto, 0) + elenco.get(scelta));
 			}
 		}

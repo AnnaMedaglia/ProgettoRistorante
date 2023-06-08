@@ -60,5 +60,10 @@ public class Giorno implements Comparable<Giorno> {
 		//0 se sono lo stesso giorno
 	}
 
+	@Override
+	public String toString() {
+		return giorno.getDayOfMonth() + "-" + giorno.getMonthValue() + "-" + giorno.getYear();
+	}
+
 	
 }
