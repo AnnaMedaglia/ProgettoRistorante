@@ -23,7 +23,7 @@ public class Gestore extends Utente{
 		super(nome, etichettaG, voci);
 	}
 
-	private void inizializzaRistorante(Ristorante ristorante) {
+	public void inizializzaRistorante(Ristorante ristorante) {
 		String msgCarico = "Inserisci il carico di lavoro per persona: ";
 		String msgNumPosti = "Inserisci il numero di posti a sedere disponibili del ristorante: ";
 
@@ -34,14 +34,14 @@ public class Gestore extends Utente{
 		ristorante.setNumPosti(numPosti);
 	}
 
-	private void visualizzaRistorante(Ristorante ristorante) {
+	public void visualizzaRistorante(Ristorante ristorante) {
 		System.out.printf("Nome del ristorante: %s\n", ristorante.getNome());
 		System.out.printf("Carico di lavoro per persona: %d\n", ristorante.getCaricoLavoroPersona());
 		System.out.printf("Carico di lavoro sostenibile dal ristorante: %.2f\n", ristorante.getCaricoLavoroRistorante());
 		System.out.printf("Numeri di posti a sedere nel ristorante: %d\n", ristorante.getNumPosti());
 	}
 
-	private void aggiungiBevanda(Ristorante ristorante) {
+	public void aggiungiBevanda(Ristorante ristorante) {
 		String msgNome = "Inserisci il nome della bevanda da aggiungere: ";
 		String msgConsumo = "Inserisci il consumo pro capite della bevanda da aggiungere: ";
 
@@ -51,7 +51,7 @@ public class Gestore extends Utente{
 		ristorante.aggiungiBevanda(nome, consumoProCapite);
 	}
 
-	private void rimuoviBevanda(Ristorante ristorante) {
+	public void rimuoviBevanda(Ristorante ristorante) {
 		String msgNome = "Inserisci il nome della bevanda da rimuovere: ";
 
 		String nome = InputDati.leggiStringaNonVuota(msgNome);
@@ -59,13 +59,13 @@ public class Gestore extends Utente{
 		ristorante.rimuoviBevanda(nome);
 	}
 
-	private void visualizzaInsiemeBevande(Ristorante ristorante) {
+	public void visualizzaInsiemeBevande(Ristorante ristorante) {
 		for (String elemento : ristorante.getInsiemeB().keySet()) {
 			System.out.printf("bevanda: %s\tconsumo pro capite: %f.2\n", elemento, ristorante.getInsiemeB().get(elemento));
 		}
 	}
 
-	private void aggiungiGenereExtra(Ristorante ristorante) {
+	public void aggiungiGenereExtra(Ristorante ristorante) {
 		String msgNome = "Inserisci il nome del genere extra da aggiungere: ";
 		String msgConsumo = "Inserisci il consumo pro capite del genere extra da aggiungere: ";
 
@@ -75,7 +75,7 @@ public class Gestore extends Utente{
 		ristorante.aggiungiGenereExtra(nome, consumoProCapite);
 	}
 
-	private void rimuoviGenereExtra(Ristorante ristorante) {
+	public void rimuoviGenereExtra(Ristorante ristorante) {
 		String msgNome = "Inserisci il nome del genere extra da rimuovere: ";
 
 		String nome = InputDati.leggiStringaNonVuota(msgNome);
@@ -83,13 +83,13 @@ public class Gestore extends Utente{
 		ristorante.rimuoviGenereExtra(nome);
 	}
 
-	private void visualizzaInsiemeGeneriExtra(Ristorante ristorante) {
+	public void visualizzaInsiemeGeneriExtra(Ristorante ristorante) {
 		for (String elemento : ristorante.getInsiemeGE().keySet()) {
 			System.out.printf("genere extra: %s\tconsumo pro capite: %f.2\n", elemento, ristorante.getInsiemeGE().get(elemento));
 		}
 	}
 
-	private void corrispondenzaPiattoRicetta (Ristorante ristorante) {
+	public void corrispondenzaPiattoRicetta (Ristorante ristorante) {
 		String msgValidita = "Vuoi gia' inserire il periodo di validita' per ogni piatto? [S/N] ";
 
 		for (Ricetta ricetta : ristorante.getRicettario()) {
@@ -104,7 +104,7 @@ public class Gestore extends Utente{
 		}
 	}
 
-	private void aggiungiValiditaPiatto (Piatto piatto) {
+	public void aggiungiValiditaPiatto (Piatto piatto) {
 		String msgValidita = "Inserisci il periodo di validita' del piatto: ";
 		System.out.println(msgValidita);
 
@@ -113,13 +113,13 @@ public class Gestore extends Utente{
 		piatto.setValidita(validita);
 	}
 
-	private void aggiungiValiditaPiatti (HashSet<Piatto> piatti) {
+	public void aggiungiValiditaPiatti (HashSet<Piatto> piatti) {
 		for (Piatto piatto : piatti) {	
 			aggiungiValiditaPiatto(piatto);
 		}
 	}
 
-	private void verificaEsistenzaRicetta(Ristorante ristorante){
+	public void verificaEsistenzaRicetta(Ristorante ristorante){
 		String msgNome = "Inserisci il nome del piatto da cercare: ";
 		String msgSiRicetta = "Esiste una corrispondenza tra il piatto cercato e una ricetta";
 		String msgNoRicetta = "Non esiste una ricetta con questo nome";
@@ -131,17 +131,16 @@ public class Gestore extends Utente{
 			System.out.println(msgSiRicetta);
 		} catch (NullPointerException e) {
 			System.out.println(msgNoRicetta);
-			e.printStackTrace();
 		}
 	}
 
-	private void visualizzaPiatti(HashSet<Piatto> piatti) {
+	public void visualizzaPiatti(HashSet<Piatto> piatti) {
 		for (Piatto piatto : piatti) {
 			System.out.printf("nome piatto: %s\tperiodo di validita': %s\n", piatto.getDenominazione(), piatto.getValidita().toString());
 		}
 	}
 
-	private void creaRicetta(Ristorante ristorante) {
+	public void creaRicetta(Ristorante ristorante) {
 		String msgNome = "Inserisci il nome della ricetta da creare: ";
 		String msgNumPorzioni = "Inserisci il numero delle porzioni della ricetta da creare: ";
 		String msgCaricoLavoro = "Inserisci il carico di lavoro per persona della ricetta da creare: ";
@@ -161,7 +160,7 @@ public class Gestore extends Utente{
 		ristorante.aggiungiRicetta(nuova);
 	}
 
-	private void aggiungiIngredienti(Ricetta ricetta) {
+	public void aggiungiIngredienti(Ricetta ricetta) {
 		String msgNome = "Inserisci il nome dell'ingrediente da aggiungere: ";
 		String msgDose = "Inserisci la dose dell'ingrediente da aggiungere: ";
 
@@ -171,7 +170,7 @@ public class Gestore extends Utente{
 		ricetta.aggiungiIngrediente(nomeIngrediente, doseIngrediente);		
 	}
 
-	private void visualizzaRicettario(Ristorante ristorante) {
+	public void visualizzaRicettario(Ristorante ristorante) {
 		int i = 1;
 		for (Ricetta ric : ristorante.getRicettario()) {
 			System.out.printf("%d: %s\n", i, ric.getNome());
@@ -179,7 +178,7 @@ public class Gestore extends Utente{
 		}
 	}
 
-	private void visualizzaRicetta(Ristorante ristorante) {
+	public void visualizzaRicetta(Ristorante ristorante) {
 		String msgRichiestaRicetta = "Inserisci il nome della ricetta da visualizzare: ";
 
 		String msgNoRicetta = "Non esiste una ricetta con questo nome. Inseriscilo di nuovo: ";
@@ -201,14 +200,14 @@ public class Gestore extends Utente{
 		} while (trovata);
 	}
 
-	private void visualizzaInfoRicette (Ristorante ristorante) {
+	public void visualizzaInfoRicette (Ristorante ristorante) {
 		for (Ricetta ric : ristorante.getRicettario()) {
 			System.out.println(ric.toString());
 		}
 	}
 
 	//in ristorante abbiamo calendario, dove abbiamo giornate, aggiungiamo i menu alle rispettive giornate
-	private void creaMenuTematico(Ristorante ristorante) {
+	public void creaMenuTematico(Ristorante ristorante) {
 		String msgNome = "Inserisci il nome del menu tematico da creare: ";
 		String msgPiatto = "Inserisci il nome del piatto da aggiungere al menu tematico: ";
 		String msgErrValidita = "ATTENZIONE! Il piatto scelto non è valido per i giorni selezionati.";
@@ -247,13 +246,13 @@ public class Gestore extends Utente{
 		ristorante.aggiungiMenuTematico(nuovo);
 	}
 
-	private void visualizzaMenuTematici(Ristorante ristorante) {
+	public void visualizzaMenuTematici(Ristorante ristorante) {
 		for (MenuTematico menu : ristorante.getMenuTematici()) {
 			System.out.println(menu.toString());
 		}
 	}	
 
-	private void visualizzaNomiMenuTematici(Ristorante ristorante) {
+	public void visualizzaNomiMenuTematici(Ristorante ristorante) {
 		int i = 1;
 		for (MenuTematico menu : ristorante.getMenuTematici()) {
 			System.out.printf("%d) %s", i, menu.getNome());
@@ -262,7 +261,7 @@ public class Gestore extends Utente{
 	}
 
 	//dato un giorno chiesto nel metodo stesso
-	private void visualizzaMenuTematico(Ristorante ristorante) {
+	public void visualizzaMenuTematico(Ristorante ristorante) {
 		String msgRichiesta = "Inserisci il nome del menu tematico da visualizzare: ";
 		String msgErrMenu= "ATTENZIONE! Il menu inserito non esiste";
 
@@ -281,6 +280,7 @@ public class Gestore extends Utente{
 		} while (trovato);
 
 	}
+	
 	@Override
 	public void eseguiMetodi(Ristorante ristorante, int scelta) {
 		switch (scelta) {

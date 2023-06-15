@@ -2,7 +2,9 @@ package Ristorante;
 
 import java.util.HashSet;
 
-public class Piatto {
+import Prenotazioni.SceltaPrenotazione;
+
+public class Piatto implements SceltaPrenotazione{
 
 	private String denominazione;
 	private double caricoLavoro;
@@ -38,14 +40,14 @@ public class Piatto {
 		this.validita = validita;
 	}
 	
-	public static Piatto trovaPiattoDaNome(String piatto, HashSet<Piatto> piatti) throws NullPointerException {
+	public static Piatto trovaPiattoDaNome(String piatto, HashSet<Piatto> piatti) {
 		for (Piatto p : piatti) {
 			if (p.getDenominazione().equals(piatto)) {
 				return p;
 			}
 		}
-		// Se il piatto non viene trovato si lancia un'eccezione
-		throw new NullPointerException();
+		// Se il piatto non viene trovato si ritorna null
+		throw null;
 	}
 	
 }

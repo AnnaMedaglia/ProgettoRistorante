@@ -1,8 +1,9 @@
 package Ristorante;
 
 import java.util.HashSet;
+import Prenotazioni.SceltaPrenotazione;
 
-public class MenuTematico extends Menu {
+public class MenuTematico extends Menu implements SceltaPrenotazione{
 
 	private String nome;
 	private double caricoLavoroMenuT;

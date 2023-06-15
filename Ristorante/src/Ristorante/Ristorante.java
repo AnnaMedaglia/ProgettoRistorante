@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 
+import Prenotazioni.Giorno;
 import Util.InputDati;
 import Util.ServizioFile;
 
@@ -38,12 +39,13 @@ public class Ristorante {
 		this.nome = nome;
 	}
 
-	public static Ristorante creaRistorante() {
+	public static Ristorante accessoRistorante() {
 		String messaggioNome = "Inserisci il nome del ristorante: ";
-
+		
+		String percorsoCartellaApp = System.getProperty("user.dir");
 		String nome = InputDati.leggiStringaNonVuota(messaggioNome);
-
-		ServizioFile.creaFile(nome);
+		
+		ServizioFile.accediFile(percorsoCartellaApp, nome);
 
 		return new Ristorante(nome);
 	}
@@ -83,7 +85,15 @@ public class Ristorante {
 	public void setCalendario(TreeSet<Giornata> calendario) {
 		this.calendario = calendario;
 	}
-
+	
+	public Giornata getGiornata (Giorno giorno) {
+		for (Giornata giornata : calendario) {
+			if (giornata.getGiorno().equals(giorno)) {
+				return giornata;
+			}
+		}
+		return null;
+	}
 
 	public HashMap<String, Double> getInsiemeGE() {
 		return insiemeGE;
@@ -132,15 +142,6 @@ public class Ristorante {
 
 	public void aggiungiRicetta(Ricetta ricetta) {
 		this.ricettario.add(ricetta);
-	}
-
-	public Ricetta getRicetta(Piatto piatto) throws NullPointerException {
-		for (Ricetta ricetta : ricettario) {
-			if (piatto.getDenominazione().equalsIgnoreCase(ricetta.getNome())) {
-				return ricetta;
-			}
-		}
-		throw new NullPointerException();
 	}
 
 	public HashSet<Piatto> getPiatti() {

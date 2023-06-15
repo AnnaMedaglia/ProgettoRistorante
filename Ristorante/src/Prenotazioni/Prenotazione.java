@@ -2,14 +2,15 @@ package Prenotazioni;
 import java.util.HashMap;
 
 import Ristorante.Piatto;
-import Ristorante.Menu;
+import Util.InputDati;
+import Ristorante.SceltaPrenotazione;
 
 public class Prenotazione {
 
 	private String cliente;
 	private int numCoperti;
 	private Giorno data;
-	private HashMap<Menu, Integer> elenco; 
+	private HashMap<SceltaPrenotazione, Integer> elenco; 
 
 	public Prenotazione(String cliente, int numCoperti, Giorno data) {
 		this.cliente = cliente;
@@ -42,25 +43,25 @@ public class Prenotazione {
 		this.data = data;
 	}
 
-	public HashMap<Menu, Integer> getElenco() {
+	public HashMap<SceltaPrenotazione, Integer> getElenco() {
 		return elenco;
 	}
 
-	public void setElenco(HashMap<Menu, Integer> elenco) {
+	public void setElenco(HashMap<SceltaPrenotazione, Integer> elenco) {
 		this.elenco = elenco;
 	}
 
-	public void addScelta (Menu scelta, int numPersone) {
+	public void addScelta (SceltaPrenotazione scelta, int numPersone) {
 		elenco.put(scelta, numPersone);
 	}
 
-	//ritorna il numero di Persone (= valore) dato il primo elemento della coppia 
-	public int getNumeroPersone(Menu ordine) {
+	//ritorna il numero di Persone (= valore) dato il primo elemento della coppia = quante persone hanno ordinato un determinato piatto o menu tematico
+	public int getNumeroPersone(SceltaPrenotazione ordine) {
 		return elenco.get(ordine);
 	}
 
-	//ritorna la somma del numero dei piatti totali ordinati in una prenotazione → su questo va imposto il vincolo <= numCoperti
-	public int ritornaNumPersone () {
+	//ritorna la somma del numero dei piatti totali ordinati in una prenotazione 
+	public int ritornaNumPiattiOrdinati () {
 		int temp = 0;
 		for (Integer ordine : elenco.values()) {
 			temp += ordine;
@@ -71,12 +72,25 @@ public class Prenotazione {
 	//metodo che servira' per la lista della spesa relativa alla singola prenotazione
 	public HashMap <Piatto, Integer> elencoPiatti () {
 		HashMap<Piatto, Integer> conteggio = new HashMap<>();
-		for (Menu scelta : elenco.keySet()) {
+		for (SceltaPrenotazione scelta : elenco.keySet()) {
 			for (Piatto piatto : scelta.getElenco()) {
 				conteggio.put(piatto, conteggio.getOrDefault(piatto, 0) + elenco.get(scelta));
 			}
 		}
 		return conteggio;
+	}
+
+	public static Prenotazione creaPrenotazioneVuota(int maxCoperti) {
+		String messaggioNomeCliente = "Inserire il nome di chi prenota: ";
+		String messaggioNumCoperti = "Inserire il numero di persone per cui si vuole prenotare: ";
+		
+		String nomeCliente = InputDati.leggiStringaNonVuota(messaggioNomeCliente);
+		int numCoperti = InputDati.leggiIntero(messaggioNumCoperti, 1, maxCoperti);
+		Giorno data = Giorno.richiestaCreaGiorno();
+		
+		Prenotazione prenotazione = new Prenotazione(nomeCliente, numCoperti, data);
+
+		return prenotazione;
 	}
 
 }

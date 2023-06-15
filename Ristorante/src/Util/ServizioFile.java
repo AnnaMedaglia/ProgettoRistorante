@@ -4,27 +4,32 @@ import java.io.*;
 
 public class ServizioFile
 {
-	
-	private final static String MSG_SUCCESSO = "Il file è stato creato con successo ";
-	private static final String MSG_ESISTE = "ATTENZIONE: il file esiste già ";
-	private static final String MSG_NO_CREAZIONE = "ATTENZIONE: si è verificato un errore durante la creazione del file ";
-	private final static String MSG_NO_FILE = "ATTENZIONE: non trovo il file ";
-	private final static String MSG_NO_LETTURA = "ATTENZIONE: problemi con la lettura del file ";
-	private final static String MSG_NO_SCRITTURA = "ATTENZIONE: problemi con la scrittura del file ";
-	private final static String MSG_NO_CHIUSURA ="ATTENZIONE: problemi con la chiusura del file ";
+
+	private final static String MSG_SUCCESSO = "%s è stato creato con successo.";
+	private static final String MSG_ACCESSO = "Benvenuto in %s.";
+	private static final String MSG_NO_CREAZIONE = "ATTENZIONE: si è verificato un errore durante la creazione del file.";
+	private final static String MSG_NO_FILE = "ATTENZIONE: non trovo il file.";
+	private final static String MSG_NO_LETTURA = "ATTENZIONE: problemi con la lettura del file.";
+	private final static String MSG_NO_SCRITTURA = "ATTENZIONE: problemi con la scrittura del file.";
+	private final static String MSG_NO_CHIUSURA ="ATTENZIONE: problemi con la chiusura del file.";
 
 
-	public static void creaFile(String nomeFile) {
-		try {
-			File file = new File(nomeFile+".txt");
-			if (file.createNewFile()) {
-				System.out.println(MSG_SUCCESSO);
-			} else {
-				System.out.println(MSG_ESISTE);
+	public static File accediFile(String cartella, String nomeFile) {
+		File file = new File(cartella, nomeFile+".txt");
+
+		if (file.exists()) {
+			System.out.printf(MSG_ACCESSO, nomeFile);
+			return file;
+		} else {
+			// Il file non esiste nella cartella
+			try {
+				file.createNewFile();
+				System.out.printf(MSG_SUCCESSO, nomeFile);
+				return file;
+			} catch (IOException e) {
+				System.out.println(MSG_NO_CREAZIONE);
+				return null;
 			}
-		} catch (IOException e) {
-			System.out.println(MSG_NO_CREAZIONE);
-			e.printStackTrace();
 		}
 	}
 

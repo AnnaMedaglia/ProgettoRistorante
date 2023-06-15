@@ -93,7 +93,7 @@ public class Giornata {
 	}
 
 
-	//metodo che ci ritorna il numero totale dei coperti della giornata
+	//metodo che ci ritorna il numero totale dei coperti della giornata → <= num posti a sedere del ristorane
 	public int numCopertiPrenotati () {
 		int num = 0;
 		for (Prenotazione pren : prenotazioni) {

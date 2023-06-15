@@ -55,14 +55,14 @@ public class Ricetta {
 	}
 
 	//metodo che associa un piatto a una ricetta
-	public static Ricetta trovaRicetta(String piatto, HashSet<Ricetta> ricettario) throws NullPointerException {
+	public static Ricetta trovaRicetta(String piatto, HashSet<Ricetta> ricettario){
 		for (Ricetta ric : ricettario) {
-			if (ric.getNome().equals(piatto)) {
+			if (ric.getNome().equalsIgnoreCase(piatto)) {
 				return ric;
 			}
 		}
-		// Se la ricetta non viene trovata si lancia un'eccezione
-		throw new NullPointerException();
+		// Se la ricetta non viene trovata si ritorna null
+		return null;
 	}
 
 	@Override
