@@ -9,7 +9,7 @@ public class MenuCarta extends Menu {
 	public String toString() {
 		String stringa = "Menu alla carta:\nPiatti:\n";
 		for (Piatto piatto : super.getElenco()) {
-			stringa += piatto.getDenominazione() + "\n";
+			stringa += piatto.getNome() + "\n";
 		}
 		return stringa;
 	}

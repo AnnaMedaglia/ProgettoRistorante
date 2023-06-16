@@ -102,4 +102,11 @@ public class Giornata {
 		return num;
 	}
 
+	public String stampaPrenotazioni() {
+		String daStampare="Prenotazioni:\n";
+		for (Prenotazione pren : prenotazioni) {
+			daStampare += pren.toString() + "\n"; 
+		}
+		return daStampare;
+	}
 }

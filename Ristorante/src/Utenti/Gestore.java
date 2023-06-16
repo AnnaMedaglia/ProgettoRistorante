@@ -136,7 +136,7 @@ public class Gestore extends Utente{
 
 	public void visualizzaPiatti(HashSet<Piatto> piatti) {
 		for (Piatto piatto : piatti) {
-			System.out.printf("nome piatto: %s\tperiodo di validita': %s\n", piatto.getDenominazione(), piatto.getValidita().toString());
+			System.out.printf("nome piatto: %s\tperiodo di validita': %s\n", piatto.getNome(), piatto.getValidita().toString());
 		}
 	}
 
@@ -228,7 +228,7 @@ public class Gestore extends Utente{
 			Piatto piattoTrovato = Piatto.trovaPiattoDaNome(nomePiatto, ristorante.getPiatti());
 			if (piattoTrovato != null) {
 				double CLP = piattoTrovato.getCaricoLavoro();
-				double CLM = nuovo.getCaricoLavoroMenuT();
+				double CLM = nuovo.getCaricoLavoro();
 				double CLPersona = ristorante.getCaricoLavoroPersona();
 				if ((CLP+CLM) <= (4/3)*CLPersona) {
 					if (validitaMenuT.getPeriodoValidita().containsAll(piattoTrovato.getValidita().getPeriodoValidita())) {

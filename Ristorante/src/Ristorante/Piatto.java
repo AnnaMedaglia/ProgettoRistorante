@@ -6,22 +6,23 @@ import Prenotazioni.SceltaPrenotazione;
 
 public class Piatto implements SceltaPrenotazione{
 
-	private String denominazione;
+	private String nome;
 	private double caricoLavoro;
 	private Periodo validita;
 
-	public Piatto(String denominazione, double caricoLavoro) {
-		this.denominazione = denominazione;
+	public Piatto(String nome, double caricoLavoro) {
+		this.nome = nome;
 		this.caricoLavoro = caricoLavoro;
 		this.validita = new Periodo();
 	}
 
-	public String getDenominazione() {
-		return denominazione;
+	@Override
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDenominazione(String denominazione) {
-		this.denominazione = denominazione;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public double getCaricoLavoro() {
@@ -42,12 +43,20 @@ public class Piatto implements SceltaPrenotazione{
 	
 	public static Piatto trovaPiattoDaNome(String piatto, HashSet<Piatto> piatti) {
 		for (Piatto p : piatti) {
-			if (p.getDenominazione().equals(piatto)) {
+			if (p.getNome().equals(piatto)) {
 				return p;
 			}
 		}
 		// Se il piatto non viene trovato si ritorna null
 		throw null;
 	}
+
+	@Override
+	public HashSet<Piatto> getPiatti() {
+		HashSet<Piatto> piatti = new HashSet<Piatto>();
+		piatti.add(this);
+		return piatti;
+	}
+
 	
 }

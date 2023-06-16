@@ -36,7 +36,7 @@ public class Ingrediente extends Merce {
 
 		// per ogni piatto di elencoPiatti va trovata la Ricetta associata
 		for (Piatto piatto : elencoPiatti.keySet()) {
-			Ricetta ricetta = Ricetta.trovaRicetta(piatto.getDenominazione(), ricettario);
+			Ricetta ricetta = Ricetta.trovaRicetta(piatto.getNome(), ricettario);
 
 			// dalla ricetta ricaviamo l'elenco di ingredienti (e quindi anche le dosi di ogni ingrediente per una ricetta)
 			HashMap<String,Double> ingredienti = ricetta.getIngredienti(); 

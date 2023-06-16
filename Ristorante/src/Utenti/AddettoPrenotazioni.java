@@ -2,22 +2,27 @@ package Utenti;
 
 import Prenotazioni.Giorno;
 import Prenotazioni.Prenotazione;
+import Prenotazioni.SceltaPrenotazione;
 import Ristorante.Giornata;
 import Ristorante.Ristorante;
 import Util.InputDati;
 
 import java.util.TreeSet;
+import java.util.HashSet;
 
 public class AddettoPrenotazioni extends Utente {
 
 	private static String etichettaAP = "addetto alle prenotazioni";
-	private static String[] voci = {""};
+	private static String[] voci = {"Accetta le prenotazioni", "Visualizza le prenotazioni dato il giorno"};
 
 	public AddettoPrenotazioni(String nome) {
 		super(nome, etichettaAP, voci);
 	}
 
 	public void accettazionePrenotazione(Ristorante ristorante) {
+		String messaggioSuccessoAccettazione = "La prenotazione è avvenuta con successo";
+		String messaggioErrAccettazione = "La prenotazione non si può accettare";
+		
 		Prenotazione prenotazione = Prenotazione.creaPrenotazioneVuota(ristorante.getNumPosti());
 
 		aggiungiScelte(ristorante, prenotazione);
@@ -25,10 +30,16 @@ public class AddettoPrenotazioni extends Utente {
 		Giorno dataPrenotazione = prenotazione.getData();
 		TreeSet<Giornata> calendario = ristorante.getCalendario();
 
+		int postiRimasti = ristorante.getNumPosti();
+
 		for (Giornata giornata : calendario) {
 			if (giornata.getGiorno().equals(dataPrenotazione)) {
-				if (controlloVincoli(giornata, ristorante)) {
+				if (controlloVincoli(giornata.numCopertiPrenotati(), postiRimasti, prenotazione, ristorante.getCaricoLavoroRistorante())) {
 					giornata.getPrenotazioni().add(prenotazione);
+					postiRimasti-=prenotazione.getNumCoperti();
+					System.out.println(messaggioSuccessoAccettazione);
+				} else {
+					System.out.println(messaggioErrAccettazione);
 				}
 			}
 		}
@@ -40,7 +51,7 @@ public class AddettoPrenotazioni extends Utente {
 		String messaggioRichiestaAltreScelte = "Vuoi inserire altri elementi in questa prenotazione?";
 
 		String messaggioErrAltriPiatti = "Vanno inseriti almeno altre %d scelte";
-		
+
 		boolean risposta = false;
 		do {
 			System.out.println(ristorante.getMenuTematici().toString());
@@ -50,8 +61,14 @@ public class AddettoPrenotazioni extends Utente {
 			int numScelta = InputDati.leggiInteroConMinimo(messaggioNumScelta, 1);
 
 			//	*aggiungi SceltaPrenotazione all'hashmap della prenotazione*
-			//setElenco in prenotazione
-			
+			HashSet<SceltaPrenotazione> insiemeTotale = new HashSet<>(ristorante.getMenuTematici());
+			insiemeTotale.addAll(ristorante.getPiatti());
+
+			SceltaPrenotazione scelta = SceltaPrenotazione.trovaDaNome(nomeScelta, insiemeTotale);
+			if (scelta!=null) {
+				prenotazione.addScelta(scelta, numScelta);	
+			}
+
 			risposta = InputDati.yesOrNo(messaggioRichiestaAltreScelte);
 			int piattiMinDaInserire= numScelta-prenotazione.getNumCoperti();
 			if (piattiMinDaInserire>0) {
@@ -61,17 +78,45 @@ public class AddettoPrenotazioni extends Utente {
 		} while (risposta);
 
 	}
+	
+	public boolean controlloVincoli(int copertiGiornata, int postiRistorante, Prenotazione prenotazione, double caricoLavoroRistorante) {
+		boolean cond1 = (copertiGiornata <= postiRistorante);
 
-	public boolean controlloVincoli(Giornata giornata, Ristorante ristorante) {
+		double caricoLavoroPrenotazione = 0.0;
 
-		return false;
+		for (SceltaPrenotazione scelta : prenotazione.getElenco().keySet()) {
+			caricoLavoroPrenotazione = scelta.getCaricoLavoro()*prenotazione.getElenco().get(scelta);
+		}
+
+		boolean cond2 = caricoLavoroPrenotazione < caricoLavoroRistorante;
+		
+		if(cond1 & cond2) {
+			return true;
+		} else		
+			return false;
+	}
+
+	public void visualizzaPrenotazioni(Ristorante ristorante) {
+		String messaggioGiornata = "Inserire la giornata di cui si vuole vedere le prenotazioni";
+		
+		System.out.println(messaggioGiornata);
+		Giorno giornoScelto = Giorno.richiestaCreaGiorno();
+		
+		for (Giornata giornata : ristorante.getCalendario()) {
+			if (giornoScelto.equals(giornata.getGiorno())) {
+				System.out.println(giornata.stampaPrenotazioni());
+			}
+		}
 	}
 
 	@Override
 	public void eseguiMetodi(Ristorante ristorante, int scelta) {
 		switch (scelta) {
 		case 1: 
-
+			accettazionePrenotazione(ristorante);
+			break;
+		case 2:
+			visualizzaPrenotazioni(ristorante);
 			break;
 		}
 	}

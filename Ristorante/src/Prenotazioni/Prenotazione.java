@@ -3,7 +3,6 @@ import java.util.HashMap;
 
 import Ristorante.Piatto;
 import Util.InputDati;
-import Ristorante.SceltaPrenotazione;
 
 public class Prenotazione {
 
@@ -73,13 +72,23 @@ public class Prenotazione {
 	public HashMap <Piatto, Integer> elencoPiatti () {
 		HashMap<Piatto, Integer> conteggio = new HashMap<>();
 		for (SceltaPrenotazione scelta : elenco.keySet()) {
-			for (Piatto piatto : scelta.getElenco()) {
+			for (Piatto piatto : scelta.getPiatti()) {
 				conteggio.put(piatto, conteggio.getOrDefault(piatto, 0) + elenco.get(scelta));
 			}
 		}
 		return conteggio;
 	}
 
+	public double calcoloCaricoLavoro() {
+		double caricoLavoroTotale=0.0;
+		
+		for (SceltaPrenotazione scelta : elenco.keySet()) {
+			caricoLavoroTotale += scelta.getCaricoLavoro();
+		}
+		
+		return caricoLavoroTotale;
+	}
+	
 	public static Prenotazione creaPrenotazioneVuota(int maxCoperti) {
 		String messaggioNomeCliente = "Inserire il nome di chi prenota: ";
 		String messaggioNumCoperti = "Inserire il numero di persone per cui si vuole prenotare: ";
@@ -93,6 +102,11 @@ public class Prenotazione {
 		return prenotazione;
 	}
 
+	@Override
+	public String toString() {
+		return "Prenotazione di " + cliente + ", per " + numCoperti + "persone";
+	}
+	
 }
 
 

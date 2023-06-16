@@ -6,12 +6,12 @@ import Prenotazioni.SceltaPrenotazione;
 public class MenuTematico extends Menu implements SceltaPrenotazione{
 
 	private String nome;
-	private double caricoLavoroMenuT;
+	private double caricoLavoro;
 
 	public MenuTematico(String nome,Periodo validita) {
 		super(validita);
 		this.nome = nome;
-		this.caricoLavoroMenuT = 0.0;
+		this.caricoLavoro = 0.0;
 	}
 
 	public String getNome() {
@@ -22,12 +22,12 @@ public class MenuTematico extends Menu implements SceltaPrenotazione{
 		this.nome = nome;
 	}
 
-	public double getCaricoLavoroMenuT() {
-		return caricoLavoroMenuT;
+	public double getCaricoLavoro() {
+		return caricoLavoro;
 	}
 
 	public void aggiungiPiatto (Piatto piatto) {
-		this.caricoLavoroMenuT += piatto.getCaricoLavoro();
+		this.caricoLavoro += piatto.getCaricoLavoro();
 		super.aggiungiPiatto(piatto);
 	}
 
@@ -44,11 +44,16 @@ public class MenuTematico extends Menu implements SceltaPrenotazione{
 	
 	@Override
 	public String toString() {
-		String stringa = "Menu Tematico: "+ nome + "\nCarico di lavoro del menu tematico: " + caricoLavoroMenuT + "\nPiatti:\n";
+		String stringa = "Menu Tematico: "+ nome + "\nCarico di lavoro del menu tematico: " + caricoLavoro + "\nPiatti:\n";
 		for (Piatto piatto : getElenco()) {
-			stringa += piatto.getDenominazione() + "\n";
+			stringa += piatto.getNome() + "\n";
 		}
 		return stringa;
+	}
+
+	@Override
+	public HashSet<Piatto> getPiatti() {
+		return this.getElenco();
 	}
 
 }
