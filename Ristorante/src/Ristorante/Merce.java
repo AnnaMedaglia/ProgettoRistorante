@@ -64,21 +64,18 @@ public abstract class Merce {
 		this.qualita = qualita;
 	}
 
+
 	//metodo per "registrare" i prodotti acquistati che dovranno essere poi inseriti dal magazziniere nel magazzino
-	public void creaMerce (String nome, String tipo, Giorno scadenza, double consumoProCapite) {
+	public static Merce creaMerceDaTipo (String nome, String tipo, String unitaMisura, Giorno scadenza, double consumoProCapite) {
 		switch(tipo) {
 		case "bevanda" :  
-			new Bevanda (nome, scadenza, consumoProCapite);
-			break;
+			return new Bevanda (nome, scadenza, consumoProCapite);
 		case "genere extra" :
-			new GenereExtra (nome, scadenza, consumoProCapite);
-			break;
+			return new GenereExtra (nome, scadenza, consumoProCapite);
 		case "ingrediente" :
-			new Ingrediente (nome, scadenza, consumoProCapite); //il consumo pro capite = dose. unita'�Misura con set poi
-			break;
-		default :
-			throw new IllegalArgumentException("tipo della merce non valido");
+			return new Ingrediente (nome, unitaMisura, scadenza); 
 		}
+		return null;
 	};
 
 	public static void gestioneDuplicati(HashMap<String, Double> noDuplicati, HashMap<String, Double> conDuplicati){
@@ -98,4 +95,11 @@ public abstract class Merce {
 		return qualita;
 	}
 	
+	public boolean confrontoMerci(Merce altraMerce) {
+		if (this.nome == altraMerce.getNome() & this.unitaMisura == altraMerce.getUnitaMisura() & this.scadenza == altraMerce.getScadenza()) {
+			return true;
+		}
+		else return false;
+	}
+
 }

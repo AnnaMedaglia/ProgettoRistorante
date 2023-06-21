@@ -26,5 +26,9 @@ public class ElementoMagazzino {
 	public void setQuantita(double quantita) {
 		this.quantita = quantita;
 	}
+	
+	public void setFalseQualitaMerce() {
+		this.merce.setQualita(false);
+	}
 
 }

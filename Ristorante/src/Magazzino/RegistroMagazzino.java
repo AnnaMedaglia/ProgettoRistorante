@@ -1,6 +1,7 @@
 package Magazzino;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 
 import Ristorante.Giornata;
@@ -52,9 +53,9 @@ public class RegistroMagazzino {
 	}
 
 	//per ogni merce della lista dei prodotti acquistati inseriamo nel registro la merce con la dose aggiornata
-	public void acquistatiI (Giornata giornata) {	
+	public void acquistatiI (HashSet<ElementoMagazzino> comprati) {	
 		//i prodotti comprati vanno inseriti nel magazzino
-		for (ElementoMagazzino merce : giornata.getComprate()) {
+		for (ElementoMagazzino merce : comprati) {
 			aggiungiMerce(merce.getMerce(), merce.getQuantita());
 		}
 	}
@@ -131,7 +132,7 @@ public class RegistroMagazzino {
 		}
 	}
 
-	public void avanziI (HashMap<? extends Merce, Double> avanzi) {
+	public void avanziI (HashMap<Merce, Double> avanzi) {
 		//per ogni merce avanzata, quindi non solo ingredienti, ma anche bevande e generi extra, li andiamo a rimettere nel registro magazzino
 		for (Merce merceAvanzata : avanzi.keySet()) {
 			aggiungiMerce(merceAvanzata, avanzi.get(merceAvanzata));
@@ -153,5 +154,26 @@ public class RegistroMagazzino {
 			}
 		}
 	}
-
+	
+	public void setFalseQualitaMerce(Merce merceNonDiQualita) {
+		PriorityQueue<ElementoMagazzino> codaMerce = registro.get(merceNonDiQualita.getNome());
+		for (ElementoMagazzino elemento : codaMerce) {
+			if (elemento.getMerce().confrontoMerci(merceNonDiQualita)) {
+				elemento.setFalseQualitaMerce();
+				break;
+			}
+		}
+	}
+	
+	public double ritornaQuantitaDatoNome(String nome) {
+		double quantita = 0.0;
+		
+		PriorityQueue<ElementoMagazzino> codaMerce = registro.get(nome);
+		
+		for (ElementoMagazzino elemento : codaMerce) {
+			quantita += elemento.getQuantita();
+		}
+		
+		return quantita;
+	}
 }

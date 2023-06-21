@@ -13,4 +13,5 @@ public class Bevanda extends Extra {
 		super(nome, unitaMisuraB, scadenza, consumoProCapite);
 	}
 
+
 }

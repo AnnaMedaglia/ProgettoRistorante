@@ -7,25 +7,16 @@ import Prenotazioni.Prenotazione;
 
 public class Ingrediente extends Merce {
 
-	private double dose; 
 
-	public Ingrediente(String nome, String unitaMisura, double dose){
+	public Ingrediente(String nome, String unitaMisura){
 		super(nome, unitaMisura);
-		this.dose = dose;
 	}
 
-	public Ingrediente (String nome, Giorno scadenza, double dose) {
-		super(nome, scadenza);
-		this.dose = dose;
+	public Ingrediente (String nome, String unitaMisura, Giorno scadenza) {
+		super(nome, unitaMisura, scadenza);
+
 	}
 
-	public double getDose() {
-		return dose;
-	}
-
-	public void setDose(double dose) {
-		this.dose = dose;
-	}
 
 	//servira' per la lista della spesa
 	public static HashMap<String, Double> creaListaIngredientiDaPrenotazione (Prenotazione prenotazione, HashSet<Ricetta> ricettario){
@@ -56,5 +47,7 @@ public class Ingrediente extends Merce {
 		}
 		return listaIngredientiNoDuplicati;
 	}
+
+
 
 }

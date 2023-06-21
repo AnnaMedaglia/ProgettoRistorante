@@ -59,6 +59,10 @@ public class Giorno implements Comparable<Giorno> {
 		//positivo se giorno scade dopo giorno2, 
 		//0 se sono lo stesso giorno
 	}
+	
+	public static Giorno ritornaGiornoCorrente() {
+		return new Giorno (LocalDate.now());
+	}
 
 	@Override
 	public String toString() {

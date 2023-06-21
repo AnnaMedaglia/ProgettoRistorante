@@ -12,8 +12,7 @@ public class Giornata {
 
 	private Giorno giorno;
 	private HashSet<Prenotazione> prenotazioni;
-	private ListaSpesa daComprare; //per quel giorno
-	private HashSet<ElementoMagazzino> comprate; //merci effettivamente comprate inserite dal magazziniere
+	private ListaSpesa daComprare; //per quel giorno solo in base alle prenotazioni
 	private MenuCarta menuCarta;
 	private HashSet<MenuTematico> menuTematici;
 
@@ -22,7 +21,6 @@ public class Giornata {
 		this.giorno = giorno;
 		this.prenotazioni = new HashSet<>();
 		this.daComprare = daComprare;
-		this.comprate =  new HashSet<>();
 		this.menuCarta = menuCarta;
 		this.menuTematici =  new HashSet<>();
 	}
@@ -51,14 +49,6 @@ public class Giornata {
 		this.daComprare = daComprare;
 	}
 
-	public HashSet<ElementoMagazzino> getComprate() {
-		return comprate;
-	}
-
-	public void setComprate(HashSet<ElementoMagazzino> comprate) {
-		this.comprate = comprate;
-	}
-
 	public MenuCarta getMenuCarta() {
 		return menuCarta;
 	}
@@ -75,7 +65,7 @@ public class Giornata {
 		this.menuTematici = menuTematici;
 	}
 
-	public void setListaSpesa(Ristorante ristorante) {
+	public void creaListaSpesa(Ristorante ristorante) {
 		HashMap<String, Double> conDuplicati = new HashMap<>();
 		HashMap<String, Double> noDuplicati = new HashMap<>();
 
@@ -88,7 +78,7 @@ public class Giornata {
 			Merce.gestioneDuplicati(noDuplicati, conDuplicati);
 		}
 
-		//settiamo la lista della spesa dalla lista senza duplicati
+		//settiamo la lista della spesa dalla lista senza duplicati → non tiene conto delle merci già presenti nel magazzino
 		daComprare.setLista(noDuplicati);
 	}
 

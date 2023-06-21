@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 
+import Magazzino.RegistroMagazzino;
 import Prenotazioni.Giorno;
 import Util.InputDati;
 import Util.ServizioFile;
 
 public class Ristorante {
 
+	private static Ristorante instance;
+	
 	private String nome;
 	private int caricoLavoroPersona;
 	private int numPosti;
@@ -20,9 +23,10 @@ public class Ristorante {
 	private HashSet<Ricetta> ricettario;
 	private HashSet<Piatto> piatti;
 	private HashSet<MenuTematico> menuTematici;
+	private RegistroMagazzino registroMagazzino;
 
-	//costruttore
-	public Ristorante(String nome, int caricoLavoroPersona, int numPosti) {
+	//costruttore privato per Singleton
+	private Ristorante(String nome, int caricoLavoroPersona, int numPosti) {
 		this.nome = nome;
 		this.caricoLavoroPersona = caricoLavoroPersona;
 		this.numPosti = numPosti;
@@ -33,11 +37,19 @@ public class Ristorante {
 		this.ricettario = new HashSet<>();
 		this.piatti = new HashSet<>();
 		this.menuTematici = new HashSet<>();
+		this.registroMagazzino = new RegistroMagazzino();
+		
+		//creo cartella ristorante
+		//creo file con parametri del ristorante (nome, caricoLavoroPersona, numPosti)
 	}
 
-	public Ristorante(String nome) {
-		this.nome = nome;
-	}
+	public static Ristorante getInstance(String nome, int caricoLavoroPersona, int numPosti) {
+        if (instance==null){
+            instance = new Ristorante(nome, caricoLavoroPersona, numPosti);
+        }
+        return instance;
+    }
+
 
 	public static Ristorante accessoRistorante() {
 		String messaggioNome = "Inserisci il nome del ristorante: ";
@@ -166,6 +178,14 @@ public class Ristorante {
 	
 	public void aggiungiMenuTematico (MenuTematico menu) {
 		this.menuTematici.add(menu);
+	}
+
+	public RegistroMagazzino getRegistroMagazzino() {
+		return registroMagazzino;
+	}
+
+	public void setRegistroMagazzino(RegistroMagazzino registroMagazzino) {
+		this.registroMagazzino = registroMagazzino;
 	}
 
 }
